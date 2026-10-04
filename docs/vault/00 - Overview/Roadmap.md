@@ -11,6 +11,7 @@
 - [x] Dynamic custom cue commission estimator
 - [x] Mobile touch ergonomics & responsive audit
 - [x] 13-folder Obsidian Vault initialization & ADR-001
+- [x] Free GitHub Pages automated deployment CI/CD pipeline (Live at [https://st0lenthunda.github.io/FahCues/](https://st0lenthunda.github.io/FahCues/))
 
 ## Phase 2: Enhanced Customization & Social (v0.2.0)
 - [ ] 3D Cue Visualizer / Canvas Rotator using Three.js or lightweight WebGL

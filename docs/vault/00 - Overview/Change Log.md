@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file following the Keep a Changelog format.
 
+## [0.2.0] - 2026-10-04
+
+### Added
+- **GitHub Pages CI/CD Workflow**: Automated deployment pipeline using GitHub Actions (`.github/workflows/deploy.yml`) on pushes to `main`.
+- **Vite Relative Base Pathing**: Configured `base: './'` in `vite.config.ts` for subpath and custom domain compatibility.
+- **Architectural Documentation**: Created ADR-002 covering hosting decision and relative asset resolution.
+- **Live Status Badges**: Added live site URL, GitHub Actions status badges, and documentation links to `README.md`.
+- **Release Walkthrough**: Created comprehensive deployment walkthrough in `docs/walkthroughs/2026-10-04-github-pages-deployment.md`.
+
+### Changed
+- Converted catalog image references in `src/cuesData.ts` and `index.html` from root-absolute (`/images/`) to relative (`./images/`).
+- Updated `STATUS.md` and `Roadmap.md` to reflect production deployment milestones.
+
 ## [0.1.0] - 2026-10-04
 
 ### Added

@@ -1,7 +1,7 @@
 # Project Status: FahCues
 
 **Last Updated:** October 2026
-**Current Phase:** Genesis & Alpha Delivery (v0.1.0)
+**Current Phase:** Live GitHub Pages Deployment (v0.2.0)
 
 ## 📌 Overview
 FahCues is a dynamic, comic-book styled web application and portfolio showcase for custom billiard cue maker **Travis Kloss**. Built with Vite, TypeScript, and modern vanilla CSS, the site combines bold pop-art visuals, authentic cue photography, interactive specs inspection, custom commission estimator, and synthesized Web Audio sound FX.

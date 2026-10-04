@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FahCues — Custom Billiard Cues by Travis Kloss | Comic Book Style</title>
+    <meta name="description" content="Handcrafted custom billiard cues with comic book attitude by master cue maker Travis Kloss. Featuring vintage comic book decoupaged cues, Lightsaber cues, and exotic hardwood tournament weapons." />
+    
+    <!-- OpenGraph / Social Meta -->
+    <meta property="og:title" content="FahCues — Custom Billiard Cues by Travis Kloss" />
+    <meta property="og:description" content="Handcrafted Weapons of Mass Precision with Comic Book Attitude. Vintage comic decoupage, radial pins, and custom lathe craftsmanship." />
+    <meta property="og:image" content="/images/stock4.jpg" />
+    <meta property="og:type" content="website" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,500;0,700;0,900;1,700&family=Permanent+Marker&display=swap" rel="stylesheet" />
+
+    <link rel="icon" type="image/jpeg" href="/images/stock1.jpg" />
+  </head>
+  <body>
+    <!-- Top Comic Strip Issue Banner -->
+    <header class="comic-issue-banner">
+      <div class="issue-left">
+        <span class="issue-badge">VOL. 1 • NO. 1</span>
+        <span class="issue-text">FAH-CUES COMICS <span class="issue-edition">• OCTOBER 2026 EDITION</span></span>
+      </div>
+      <div class="banner-controls">
+        <button id="audio-toggle-btn" class="audio-toggle-btn" aria-label="Toggle comic sound effects">
+          <span>⚡</span> SOUND FX: ON
+        </button>
+      </div>
+    </header>
+
+    <!-- Comic Main Navbar -->
+    <nav class="comic-navbar">
+      <a href="#" class="brand-wrapper" aria-label="FahCues Home">
+        <img src="/images/stock1.jpg" alt="FahCues Mascot Hand Skull" class="brand-mascot" />
+        <div class="brand-text-block">
+          <span class="brand-logo-title">FAH-CUES</span>
+          <span class="brand-logo-subtitle">TRAVIS KLOSS CUSTOM CUES</span>
+        </div>
+      </a>
+
+      <div class="nav-links">
+        <a href="#arsenal-section" class="nav-comic-btn">THE ARSENAL</a>
+        <a href="#maker-section" class="nav-comic-btn">MEET TRAVIS</a>
+        <a href="#anatomy-section" class="nav-comic-btn">ANATOMY</a>
+        <a href="#commission-section" class="nav-comic-btn">COMMISSION</a>
+      </div>
+    </nav>
+
+    <!-- Hero Comic Cover -->
+    <section class="hero-section">
+      <div class="hero-cover-grid">
+        <div class="hero-content-col">
+          <div class="comic-burst-tag">POW! VINTAGE COMICS MEET EXOTIC HARDWOODS</div>
+          <h1 class="hero-main-title">FAH-CUES!</h1>
+          <h2 class="hero-tagline">"WEAPONS OF PRECISION WITH COMIC BOOK ATTITUDE."</h2>
+          <p class="hero-description">
+            Where authentic underground pop-art collides with master wood lathe precision. 
+            Each cue is an original, tour-ready masterpiece handcrafted by <strong>Travis Kloss</strong>—encasing 
+            vintage comic book pages and exotic tonewoods in bulletproof ceramic resin.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#arsenal-section" class="comic-btn btn-primary">
+              <span class="btn-pow">POW!</span> EXPLORE THE ARSENAL ⚡
+            </a>
+            <a href="#commission-section" class="comic-btn btn-secondary">
+              COMMISSION A CUSTOM BUILD 🎱
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-media-col">
+          <img src="/images/travis2.jpg" alt="Travis Kloss lining up a custom cue shot" class="hero-maker-img" />
+          <div class="speech-bubble-overlay">
+            <div class="bubble-speaker">TRAVIS KLOSS:</div>
+            "Every cue has a story. I turn vintage comic book panels and exotic hardwoods into weapons of pure precision."
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comic Ticker Ribbon -->
+    <div class="comic-ribbon" aria-hidden="true">
+      <div class="ribbon-track">
+        <div class="ribbon-item"><span>100% HANDMADE BY TRAVIS KLOSS</span><span class="ribbon-star">★</span></div>
+        <div class="ribbon-item"><span>GENUINE MARVEL & DC VINTAGE PANELS</span><span class="ribbon-star">★</span></div>
+        <div class="ribbon-item"><span>ZERO-PLAY RADIAL & 3/8x10 JOINTS</span><span class="ribbon-star">★</span></div>
+        <div class="ribbon-item"><span>PRO TAPER LOW-DEFLECTION SHAFTS</span><span class="ribbon-star">★</span></div>
+        <div class="ribbon-item"><span>NOT YOUR DADDY'S HOUSE CUE</span><span class="ribbon-star">★</span></div>
+        <div class="ribbon-item"><span>100% HANDMADE BY TRAVIS KLOSS</span><span class="ribbon-star">★</span></div>
+        <div class="ribbon-item"><span>GENUINE MARVEL & DC VINTAGE PANELS</span><span class="ribbon-star">★</span></div>
+        <div class="ribbon-item"><span>ZERO-PLAY RADIAL & 3/8x10 JOINTS</span><span class="ribbon-star">★</span></div>
+      </div>
+    </div>
+
+    <!-- Section 1: The Arsenal (Gallery) -->
+    <section id="arsenal-section" class="section-wrapper">
+      <div class="comic-section-header">
+        <div class="comic-caption-box">CHAPTER ONE: THE WEAPONRY</div>
+        <h2 class="comic-heading-lg">THE CUE ARSENAL</h2>
+        <p class="comic-subheading">Hover over any card for 3D perspective tilt or click to inspect high-res blueprints!</p>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="filter-tabs">
+        <button class="filter-btn active" data-category="all">ALL WEAPONS (6)</button>
+        <button class="filter-btn" data-category="comic-wrap">COMIC WRAPS</button>
+        <button class="filter-btn" data-category="pop-culture">POP-CULTURE & SABERS</button>
+        <button class="filter-btn" data-category="exotic-wood">EXOTIC WOODS & FLUTED</button>
+      </div>
+
+      <!-- Cue Cards Grid -->
+      <div id="cues-grid" class="cues-grid">
+        <!-- Rendered dynamically by main.ts -->
+      </div>
+    </section>
+
+    <!-- Section 2: Meet The Maker (3-Panel Comic Strip) -->
+    <section id="maker-section" class="section-wrapper">
+      <div class="comic-section-header">
+        <div class="comic-caption-box">ORIGIN STORY: MEANWHILE, AT THE CUE LATHE...</div>
+        <h2 class="comic-heading-lg">MEET THE CRAFTSMAN: TRAVIS KLOSS</h2>
+        <p class="comic-subheading">A 3-panel strip exploring the science and rebellious spirit of FahCues.</p>
+      </div>
+
+      <div class="meet-maker-strip">
+        <!-- Panel 1 -->
+        <article class="strip-panel">
+          <div class="panel-header-num">
+            <span>PANEL 1</span>
+            <span>THE PLAYER'S EYE</span>
+          </div>
+          <div class="strip-img-box">
+            <img src="/images/travis1.jpg" alt="Travis Kloss sizing up table angles" />
+          </div>
+          <div class="strip-panel-body">
+            <h3 class="strip-panel-title">Felt Geometry & Touch</h3>
+            <p class="strip-panel-text">
+              Travis doesn’t just build cues—he competes with them. Every taper, balance point, and tip radius is designed from hundreds of hours reading rail reflections, squirt deflection, and English spin physics under pool hall lights.
+            </p>
+          </div>
+        </article>
+
+        <!-- Panel 2 -->
+        <article class="strip-panel">
+          <div class="panel-header-num">
+            <span>PANEL 2</span>
+            <span>THE PRECISION LATHE</span>
+          </div>
+          <div class="strip-img-box">
+            <img src="/images/stock6.jpg" alt="Travis Kloss workshop cue rack" />
+          </div>
+          <div class="strip-panel-body">
+            <h3 class="strip-panel-title">Tolerances Down to 0.001"</h3>
+            <p class="strip-panel-text">
+              From hand-chiseled fluted walnut handles to segmented curly maple coring and multi-stage epoxy stabilization. Each cue shaft is turned in micro-passes over months to ensure permanent straightness.
+            </p>
+          </div>
+        </article>
+
+        <!-- Panel 3 -->
+        <article class="strip-panel">
+          <div class="panel-header-num">
+            <span>PANEL 3</span>
+            <span>ATTITUDE & SOUL</span>
+          </div>
+          <div class="strip-img-box">
+            <img src="/images/stock1.jpg" alt="Original FahCues comic mascot art" />
+          </div>
+          <div class="strip-panel-body">
+            <h3 class="strip-panel-title">Zero Boring House Cues</h3>
+            <p class="strip-panel-text">
+              "FahCues" was born to break the mold of sterile, cookie-cutter cues. By laminating authentic vintage comic books and giving cues raw comic punch, Travis creates cues that command attention the second you uncase them.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 3: Interactive Cue Anatomy Explorer -->
+    <section id="anatomy-section" class="section-wrapper">
+      <div class="comic-section-header">
+        <div class="comic-caption-box">BLUEPRINT SCHEMATICS</div>
+        <h2 class="comic-heading-lg">INTERACTIVE CUE ANATOMY</h2>
+        <p class="comic-subheading">Select any anatomical zone to learn the physics and materials behind the hit.</p>
+      </div>
+
+      <div class="anatomy-container">
+        <div class="anatomy-diagram-col">
+          <div class="anatomy-img-frame">
+            <img src="/images/stock7.jpg" alt="Cue Anatomy Showcase" />
+          </div>
+        </div>
+
+        <div class="anatomy-info-col">
+          <div id="anatomy-display-panel" class="anatomy-display-panel">
+            <!-- Dynamic callout details -->
+          </div>
+
+          <div id="anatomy-buttons-list" class="anatomy-buttons-list">
+            <!-- Buttons injected by main.ts -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Commission Custom Cue Estimator -->
+    <section id="commission-section" class="section-wrapper">
+      <div class="comic-section-header">
+        <div class="comic-caption-box">THE FORGE: BUILD YOUR CUSTOM WEAPON</div>
+        <h2 class="comic-heading-lg">COMMISSION YOUR CUE</h2>
+        <p class="comic-subheading">Choose your components, calculate your live estimate, and submit your request to Travis.</p>
+      </div>
+
+      <div id="commission-form-container">
+        <!-- Rendered by commission.ts -->
+      </div>
+    </section>
+
+    <!-- Comic Footer -->
+    <footer class="comic-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="footer-logo">FAH-CUES</span>
+          <span class="footer-tagline">CUSTOM BILLIARD CUES BY TRAVIS KLOSS</span>
+          <p class="footer-meta">
+            Handcrafted with pride, high-voltage comic energy, and tournament-grade precision. 
+            All custom comic wraps are preserved under commercial-grade high-impact resin.
+          </p>
+        </div>
+
+        <div class="footer-seal-wrap">
+          <div class="comic-code-seal">
+            <div class="seal-top">OFFICIALLY CERTIFIED</div>
+            <div class="seal-badge">FAH-CUES</div>
+            <div class="seal-auth">BILLIARD CODE AUTHORITY</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <span>© 2026 FahCues. All rights reserved. Handcrafted by Travis Kloss.</span>
+        <span>Engineered with Pure Comic Energy & Vite + Vanilla TypeScript</span>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

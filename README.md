@@ -2,6 +2,9 @@
 
 > **"Handcrafted Weapons of Precision with Comic Book Attitude."**
 
+🌐 **Live Website**: [https://st0lenthunda.github.io/FahCues/](https://st0lenthunda.github.io/FahCues/)  
+📦 **GitHub Repository**: [https://github.com/St0lenThunda/FahCues](https://github.com/St0lenThunda/FahCues)
+
 A dynamic, high-voltage comic-book styled web showcase and interactive cue customizer for master cue craftsman **Travis Kloss**.
 
 ![FahCues Comic Showcase](public/images/stock4.jpg)

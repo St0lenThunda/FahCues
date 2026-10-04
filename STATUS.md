@@ -15,3 +15,5 @@ FahCues is a dynamic, comic-book styled web application and portfolio showcase f
 - [x] **Interactive Features**: Cue gallery, modal inspector, anatomy explorer, commission configurator, audio synth.
 - [x] **Mobile & Touch Ergonomics**: Responsive horizontal swipeable nav, touch target optimization (>=44px), iOS auto-zoom prevention (16px form inputs), and safe-area-inset toast positioning.
 - [x] **Type & Build Validation**: Full verification with `npx tsc --noEmit` and `npm run build`.
+- [x] **GitHub Pages Deployment**: Public repository [St0lenThunda/FahCues](https://github.com/St0lenThunda/FahCues) created with automated GitHub Actions CI/CD pipeline, live at [https://st0lenthunda.github.io/FahCues/](https://st0lenthunda.github.io/FahCues/).
+

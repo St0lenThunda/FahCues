@@ -12,10 +12,10 @@ export const CUES_DATA: CueItem[] = [
     title: 'The Punisher: War Journal',
     subtitle: 'Vengeance on the Felt — 360° Vintage Comic Decoupage',
     category: 'comic-wrap',
-    image: '/images/punisher_surround.jpg',
+    image: './images/punisher_surround.jpg',
     gallery: [
-      '/images/punisher_surround.jpg',
-      '/images/stock6.jpg'
+      './images/punisher_surround.jpg',
+      './images/stock6.jpg'
     ],
     story: 'Engineered for the player who executes every runout with cold, unyielding precision. Crafted using genuine, preserved pages from Marvel’s 1989 Punisher War Journal run, encased under 12 hand-rubbed coats of high-impact UV clear coat with a rock-solid radial pin.',
     specs: {
@@ -36,10 +36,10 @@ export const CUES_DATA: CueItem[] = [
     title: 'The Jedi Master: Skywalker Saber',
     subtitle: 'An Elegant Weapon for a More Civilized Runout',
     category: 'pop-culture',
-    image: '/images/stock2.jpg',
+    image: './images/stock2.jpg',
     gallery: [
-      '/images/stock2.jpg',
-      '/images/stock4.jpg'
+      './images/stock2.jpg',
+      './images/stock4.jpg'
     ],
     story: 'Turned from custom aluminum billet and dense curly maple, this custom tribute replicates the iconic Luke Skywalker Return of the Jedi hilt with emerald-green textured grip. Balanced with a forward center-of-gravity for effortless draw shots and cue-ball control.',
     specs: {
@@ -60,10 +60,10 @@ export const CUES_DATA: CueItem[] = [
     title: 'The Golden Age 10-Cue Squadron',
     subtitle: 'Championship Felt Showcase — Comic Legends Arrayed',
     category: 'comic-wrap',
-    image: '/images/stock4.jpg',
+    image: './images/stock4.jpg',
     gallery: [
-      '/images/stock4.jpg',
-      '/images/stock7.jpg'
+      './images/stock4.jpg',
+      './images/stock7.jpg'
     ],
     story: 'The master collection that defined the FahCues legacy. Ten custom tournament-grade butts laid out around the apex cue ball, capturing DC, Marvel, and indie graphic novel panels. Each shaft is hand-seasoned over 18 months for zero warp stability.',
     specs: {
@@ -84,10 +84,10 @@ export const CUES_DATA: CueItem[] = [
     title: 'The Gotham & Custom Fluted Lineup',
     subtitle: 'Batman Panels, Fluted Handles & Segmented Maple',
     category: 'exotic-wood',
-    image: '/images/stock6.jpg',
+    image: './images/stock6.jpg',
     gallery: [
-      '/images/stock6.jpg',
-      '/images/punisher_surround.jpg'
+      './images/stock6.jpg',
+      './images/punisher_surround.jpg'
     ],
     story: 'Fresh off the lathe in the Travis Kloss workshop: from 1960s Batman comic butts to hand-fluted tactical finger-groove handles, floating razor-sharp spliced points, and vibrant neon pink fade butt sleeves. Built for serious pool sharks who love custom craftsmanship.',
     specs: {
@@ -108,10 +108,10 @@ export const CUES_DATA: CueItem[] = [
     title: 'The Smokin’ Eight Break Weapon',
     subtitle: 'High Kinetic Energy Transfer & Pure Badass Attitude',
     category: 'pop-culture',
-    image: '/images/stock5.jpg',
+    image: './images/stock5.jpg',
     gallery: [
-      '/images/stock5.jpg',
-      '/images/stock1.jpg'
+      './images/stock5.jpg',
+      './images/stock1.jpg'
     ],
     story: 'Built specifically for earth-shaking break shots that scatter the rack across the four corners. Features the signature FahCues grinning 8-ball chomping a cigar motif embedded directly into the butt cap, with ultra-hard phenolic tip and zero energy dissipation.',
     specs: {
@@ -132,10 +132,10 @@ export const CUES_DATA: CueItem[] = [
     title: 'The Tournament Apex Series',
     subtitle: 'Diamond Rail Geometry & Pure Ball Pocketing Purity',
     category: 'exotic-wood',
-    image: '/images/stock7.jpg',
+    image: './images/stock7.jpg',
     gallery: [
-      '/images/stock7.jpg',
-      '/images/stock4.jpg'
+      './images/stock7.jpg',
+      './images/stock4.jpg'
     ],
     story: 'Photographed live on championship blue cloth right behind the cue ball. Each cue in the Apex series is weight-balanced to within 0.1 ounce of customer preference, delivering dead-true feedback on bank shots, masse curve, and delicate touch rollouts.',
     specs: {

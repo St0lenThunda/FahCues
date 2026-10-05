@@ -33,7 +33,10 @@ export const CUES_DATA: CueItem[] = [
     serialNumber: 'FC-2026-001',
     dropEdition: 'VAULT DROP #001: 1-OF-1',
     dropStatus: 'available',
-    depositAmount: 625
+    depositAmount: 625,
+    restomodPrice: 425,
+    restomodDeposit: 212.50,
+    restomodTag: 'SEND-IN RE-SKIN'
   },
   {
     id: 'jedi-master-lightsaber',
@@ -61,7 +64,10 @@ export const CUES_DATA: CueItem[] = [
     serialNumber: 'FC-2026-002',
     dropEdition: 'VAULT DROP #001: 1-OF-1',
     dropStatus: 'available',
-    depositAmount: 725
+    depositAmount: 725,
+    restomodPrice: 495,
+    restomodDeposit: 247.50,
+    restomodTag: 'SABER RESTOMOD'
   },
   {
     id: 'golden-age-squadron',
@@ -89,7 +95,10 @@ export const CUES_DATA: CueItem[] = [
     serialNumber: 'FC-2026-003',
     dropEdition: 'VAULT DROP #001: 1-OF-1',
     dropStatus: 'reserved',
-    depositAmount: 800
+    depositAmount: 800,
+    restomodPrice: 450,
+    restomodDeposit: 225.00,
+    restomodTag: 'CLASSIC RE-SKIN'
   },
   {
     id: 'workshop-heavyweights',
@@ -117,7 +126,10 @@ export const CUES_DATA: CueItem[] = [
     serialNumber: 'FC-2026-004',
     dropEdition: 'VAULT DROP #001: 1-OF-1',
     dropStatus: 'available',
-    depositAmount: 675
+    depositAmount: 675,
+    restomodPrice: 425,
+    restomodDeposit: 212.50,
+    restomodTag: 'GOTHAM RE-SKIN'
   },
   {
     id: 'smokin-eight-break',
@@ -145,7 +157,10 @@ export const CUES_DATA: CueItem[] = [
     serialNumber: 'FC-2026-005',
     dropEdition: 'BREAK WEAPON RUN',
     dropStatus: 'available',
-    depositAmount: 550
+    depositAmount: 550,
+    restomodPrice: 395,
+    restomodDeposit: 197.50,
+    restomodTag: 'BREAK RE-SKIN'
   },
   {
     id: 'tournament-championship-felt',
@@ -173,6 +188,9 @@ export const CUES_DATA: CueItem[] = [
     serialNumber: 'FC-2026-006',
     dropEdition: 'APEX TOUR RUN',
     dropStatus: 'available',
-    depositAmount: 775
+    depositAmount: 775,
+    restomodPrice: 445,
+    restomodDeposit: 222.50,
+    restomodTag: 'TOUR RE-SKIN'
   }
 ];

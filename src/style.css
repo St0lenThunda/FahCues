@@ -57,6 +57,125 @@ body {
   overflow-x: hidden;
 }
 
+/* Workshop Operational Mode Demo Switcher */
+.model-switch-bar {
+  background: #0d0e14;
+  border-bottom: 3px solid var(--magenta);
+  padding: 8px 16px;
+  position: relative;
+  z-index: 105;
+}
+
+.model-switch-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.model-switch-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-family: var(--font-headline);
+  letter-spacing: 0.04em;
+}
+
+.model-switch-label .switch-icon {
+  font-size: 1.25rem;
+}
+
+.model-switch-label .switch-title {
+  color: var(--yellow);
+  font-size: 1.05rem;
+  letter-spacing: 0.05em;
+}
+
+.model-switch-label .switch-desc {
+  color: #bbb;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: normal;
+}
+
+.model-toggle-pill-group {
+  display: inline-flex;
+  background: #1a1c26;
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--magenta);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.mode-toggle-btn {
+  background: transparent;
+  border: none;
+  color: #ccc;
+  padding: 8px 16px;
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  transition: all 0.15s ease;
+  font-family: var(--font-headline);
+}
+
+.mode-toggle-btn:hover {
+  background: rgba(255, 230, 0, 0.12);
+  color: #fff;
+}
+
+.mode-toggle-btn.active {
+  background: var(--yellow);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 2px var(--ink);
+}
+
+.mode-toggle-btn.active[data-mode="boutique"] {
+  background: var(--cyan);
+  color: var(--ink);
+}
+
+.mode-toggle-btn .mode-text {
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 1.1;
+}
+
+.mode-toggle-btn .mode-sub {
+  font-family: var(--font-marker);
+  font-size: 0.72rem;
+  letter-spacing: normal;
+  opacity: 0.9;
+  margin-top: 2px;
+}
+
+.price-mode-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  background: var(--yellow);
+  color: var(--ink);
+  padding: 1px 6px;
+  border: 1px solid var(--ink);
+  vertical-align: middle;
+  margin-left: 4px;
+  border-radius: 2px;
+}
+
+.status-mode-tag {
+  color: var(--ink);
+  font-weight: 700;
+}
+
 /* Top Comic Strip Issue Banner */
 .comic-issue-banner {
   background: var(--ink);

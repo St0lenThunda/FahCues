@@ -11,6 +11,7 @@ import { ANATOMY_PARTS } from './anatomyData.ts';
 import { comicAudio } from './audio.ts';
 import { modalManager } from './modal.ts';
 import { CommissionController } from './commission.ts';
+import { shopModeManager } from './shopMode.ts';
 import type { CueCategory, CueItem } from './types.ts';
 
 class FahCuesApp {
@@ -25,6 +26,10 @@ class FahCuesApp {
    * Initializes the application components after DOM is loaded.
    */
   public init(): void {
+    shopModeManager.initUI();
+    shopModeManager.subscribe(() => {
+      this.renderCuesGrid();
+    });
     this.initAudioControls();
     this.renderCuesGrid();
     this.initFilterTabs();
@@ -74,65 +79,88 @@ class FahCuesApp {
       ? CUES_DATA
       : CUES_DATA.filter((cue) => cue.category === this.activeCategory);
 
-    gridEl.innerHTML = filtered.map((cue) => `
-      <article class="cue-card" data-id="${cue.id}">
-        <div class="card-badge">
-          <span class="serial-pill">${cue.serialNumber}</span> ${cue.badgeText}
-        </div>
-        
-        <div class="card-image-wrap" data-cue-id="${cue.id}">
-          <img src="${cue.image}" alt="${cue.title}" loading="lazy" />
-          <div class="card-sound-burst">${cue.soundEffect.toUpperCase()}!</div>
-        </div>
+    const mode = shopModeManager.getMode();
 
-        <div class="card-body">
-          <div class="card-status-pill ${cue.dropStatus}">
-            ${cue.dropStatus === 'available' ? '🟢 1-OF-1 AVAILABLE FOR DISPATCH' : '🔒 RESERVED IN VAULT'}
+    gridEl.innerHTML = filtered.map((cue) => {
+      const badgeHtml = mode === 'restomod'
+        ? `<span class="serial-pill">${cue.serialNumber}</span> ${cue.restomodTag || 'SEND-IN RE-SKIN'}`
+        : `<span class="serial-pill">${cue.serialNumber}</span> ${cue.badgeText}`;
+
+      const statusHtml = mode === 'restomod'
+        ? '🔧 MAIL-IN BENCH OPEN (10–14 DAYS)'
+        : (cue.dropStatus === 'available' ? '🟢 1-OF-1 AVAILABLE FOR DISPATCH' : '🔒 RESERVED IN VAULT');
+
+      const priceDisplayHtml = mode === 'restomod'
+        ? `
+          <div class="card-price-val">$${(cue.restomodPrice || 425).toLocaleString()} <span class="price-mode-tag">RE-SKIN</span></div>
+          <div class="card-deposit-val">50% Deposit: $${(cue.restomodDeposit || 212.5).toFixed(0)} • 10–14 Days</div>
+        `
+        : `
+          <div class="card-price-val">$${cue.priceEstimate.toLocaleString()}</div>
+          <div class="card-deposit-val">50% Deposit: $${cue.depositAmount.toLocaleString()}</div>
+        `;
+
+      const claimBtnText = mode === 'restomod' ? 'TRANSFORM WEAPON 🎱' : 'CLAIM WEAPON 🎱';
+
+      return `
+        <article class="cue-card" data-id="${cue.id}">
+          <div class="card-badge">
+            ${badgeHtml}
+          </div>
+          
+          <div class="card-image-wrap" data-cue-id="${cue.id}">
+            <img src="${cue.image}" alt="${cue.title}" loading="lazy" />
+            <div class="card-sound-burst">${cue.soundEffect.toUpperCase()}!</div>
           </div>
 
-          <h3 class="card-title">${cue.title}</h3>
-          <div class="card-subtitle">${cue.subtitle}</div>
-          <p class="card-story-snippet">${cue.story}</p>
-
-          <div class="card-quick-specs">
-            <div class="quick-spec-item">
-              <span>Joint:</span>
-              <strong>${cue.specs.jointPin.split('(')[0]}</strong>
-            </div>
-            <div class="quick-spec-item">
-              <span>Weight:</span>
-              <strong>${cue.specs.weightOz} oz</strong>
-            </div>
-            <div class="quick-spec-item">
-              <span>Shaft:</span>
-              <strong>${cue.specs.shaft.split(' ')[0]} ${cue.specs.shaft.split(' ')[1] || ''}</strong>
-            </div>
-          </div>
-
-          <div class="card-footer-stack">
-            <div class="card-pricing-row">
-              <div class="card-price-val">$${cue.priceEstimate.toLocaleString()}</div>
-              <div class="card-deposit-val">50% Deposit: $${cue.depositAmount.toLocaleString()}</div>
+          <div class="card-body">
+            <div class="card-status-pill ${mode === 'restomod' ? 'available' : cue.dropStatus}">
+              ${statusHtml}
             </div>
 
-            <div class="card-actions-row">
-              <button class="comic-btn btn-primary inspect-btn" data-cue-id="${cue.id}">
-                INSPECT SPECS 🔍
-              </button>
-              ${cue.dropStatus === 'available' ? `
-                <button class="comic-btn btn-secondary claim-btn" data-cue-id="${cue.id}">
-                  CLAIM WEAPON 🎱
+            <h3 class="card-title">${cue.title}</h3>
+            <div class="card-subtitle">${cue.subtitle}</div>
+            <p class="card-story-snippet">${cue.story}</p>
+
+            <div class="card-quick-specs">
+              <div class="quick-spec-item">
+                <span>Joint:</span>
+                <strong>${cue.specs.jointPin.split('(')[0]}</strong>
+              </div>
+              <div class="quick-spec-item">
+                <span>Weight:</span>
+                <strong>${cue.specs.weightOz} oz</strong>
+              </div>
+              <div class="quick-spec-item">
+                <span>Shaft:</span>
+                <strong>${cue.specs.shaft.split(' ')[0]} ${cue.specs.shaft.split(' ')[1] || ''}</strong>
+              </div>
+            </div>
+
+            <div class="card-footer-stack">
+              <div class="card-pricing-row">
+                ${priceDisplayHtml}
+              </div>
+
+              <div class="card-actions-row">
+                <button class="comic-btn btn-primary inspect-btn" data-cue-id="${cue.id}">
+                  INSPECT SPECS 🔍
                 </button>
-              ` : `
-                <button class="comic-btn btn-disabled" disabled>
-                  RESERVED 🔒
-                </button>
-              `}
+                ${(mode === 'restomod' || cue.dropStatus === 'available') ? `
+                  <button class="comic-btn btn-secondary claim-btn" data-cue-id="${cue.id}">
+                    ${claimBtnText}
+                  </button>
+                ` : `
+                  <button class="comic-btn btn-disabled" disabled>
+                    RESERVED 🔒
+                  </button>
+                `}
+              </div>
             </div>
           </div>
-        </div>
-      </article>
-    `).join('');
+        </article>
+      `;
+    }).join('');
 
     // Attach click listeners to cards and inspect buttons
     gridEl.querySelectorAll('.inspect-btn, .card-image-wrap').forEach((el) => {
@@ -148,7 +176,7 @@ class FahCuesApp {
       });
     });
 
-    // Attach click listeners to Claim Weapon buttons
+    // Attach click listeners to Claim / Transform Weapon buttons
     gridEl.querySelectorAll('.claim-btn').forEach((btn) => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -156,15 +184,18 @@ class FahCuesApp {
         const cueId = target.dataset.cueId;
         const cue = CUES_DATA.find((c) => c.id === cueId);
         if (cue && this.commissionController) {
+          const currentMode = shopModeManager.getMode();
           this.commissionController.prefillVaultClaim(cue.title, cue.serialNumber, cue.priceEstimate);
           const formEl = document.getElementById('commission-section');
           formEl?.scrollIntoView({ behavior: 'smooth' });
           comicAudio.playCrack();
-          modalManager.showToast(
-            'WEAPON STAGED FOR CLAIM ⚡',
-            `Selected ${cue.title} (${cue.serialNumber}). Fill out your contact details below to secure your 50% deposit slot!`,
-            'pow'
-          );
+
+          const toastTitle = currentMode === 'restomod' ? 'RE-SKIN STAGED 🔧' : 'WEAPON STAGED FOR CLAIM ⚡';
+          const toastMsg = currentMode === 'restomod'
+            ? `Selected ${cue.title} transformation style! Fill out your contact details below to secure your 10–14 day bench slot.`
+            : `Selected ${cue.title} (${cue.serialNumber}). Fill out your contact details below to secure your 50% deposit slot!`;
+
+          modalManager.showToast(toastTitle, toastMsg, 'pow');
         }
       });
     });

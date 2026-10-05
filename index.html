@@ -20,12 +20,39 @@
     <link rel="icon" type="image/jpeg" href="./images/stock1.jpg" />
   </head>
   <body>
+    <!-- Workshop Operational Mode Demo Switcher -->
+    <aside class="model-switch-bar" aria-label="Workshop Operational Mode Demo">
+      <div class="model-switch-inner">
+        <div class="model-switch-label">
+          <span class="switch-icon">🎛️</span>
+          <span class="switch-title">WORKSHOP DEMO SWITCHER:</span>
+          <span class="switch-desc">Flip between current mail-in Restomod reality and Boutique 1-of-1 step-up</span>
+        </div>
+        <div class="model-toggle-pill-group" role="radiogroup" aria-label="Shop Mode">
+          <button id="mode-btn-restomod" class="mode-toggle-btn active" data-mode="restomod" role="radio" aria-checked="true">
+            <span class="mode-emoji">🔧</span>
+            <span class="mode-text">RESTOMOD STUDIO</span>
+            <span class="mode-sub">Send-In Re-Skin • $395+ • 10–14 Days</span>
+          </button>
+          <button id="mode-btn-boutique" class="mode-toggle-btn" data-mode="boutique" role="radio" aria-checked="false">
+            <span class="mode-emoji">⚡</span>
+            <span class="mode-text">BOUTIQUE FORGE</span>
+            <span class="mode-sub">1-of-1 Builds • $1,250+ • 8–10 Wks</span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
     <!-- Top Comic Strip Issue Banner -->
     <header class="comic-issue-banner">
       <div class="issue-left">
         <span class="issue-badge">VOL. 1 • NO. 1</span>
         <span class="issue-text">FAH-CUES COMICS <span class="issue-edition">• OCTOBER 2026 EDITION</span></span>
-        <span class="vault-drop-pill">⚡ VAULT DROP #001: ACTIVE</span>
+        <span class="vault-drop-pill" id="mode-issue-pill"
+          data-mode-text-restomod="🔧 RESTOMOD STUDIO: SEND-IN BENCH OPEN"
+          data-mode-text-boutique="⚡ VAULT DROP #001: ACTIVE">
+          🔧 RESTOMOD STUDIO: SEND-IN BENCH OPEN
+        </span>
       </div>
       <div class="banner-controls">
         <button id="vip-trigger-banner" class="vip-header-btn" aria-label="Join VIP drop list">
@@ -43,7 +70,7 @@
         <img src="./images/stock1.jpg" alt="FahCues Mascot Hand Skull" class="brand-mascot" />
         <div class="brand-text-block">
           <span class="brand-logo-title">FAH-CUES</span>
-          <span class="brand-logo-subtitle">TRAVIS KLOSS CUSTOM CUES</span>
+          <span class="brand-logo-subtitle">FINE AFFORDABLE HANDCRAFTED</span>
         </div>
       </a>
 
@@ -60,26 +87,38 @@
     <section class="hero-section">
       <div class="hero-cover-grid">
         <div class="hero-content-col">
-          <div class="comic-burst-tag">POW! VINTAGE COMICS MEET EXOTIC HARDWOODS</div>
+          <div class="comic-burst-tag"
+            data-mode-text-restomod="POW! BRING YOUR OWN WEAPON • CUSTOM RE-SKIN STUDIO"
+            data-mode-text-boutique="POW! VINTAGE COMICS MEET EXOTIC HARDWOODS">
+            POW! BRING YOUR OWN WEAPON • CUSTOM RE-SKIN STUDIO
+          </div>
           <h1 class="hero-main-title">FAH-CUES!</h1>
           <div class="brand-acronym-badge">
             <span class="acronym-letter">F</span>INE • 
             <span class="acronym-letter">A</span>FFORDABLE • 
             <span class="acronym-letter">H</span>ANDCRAFTED
           </div>
-          <h2 class="hero-tagline">"WEAPONS OF PRECISION WITH COMIC BOOK ATTITUDE."</h2>
-          <p class="hero-description">
-            Where authentic underground pop-art collides with master wood lathe precision. 
-            Each cue is an original, tour-ready masterpiece handcrafted by <strong>Travis Kloss</strong>—encasing 
-            vintage comic book pages and exotic tonewoods in bulletproof ceramic resin.
+          <h2 class="hero-tagline"
+            data-mode-text-restomod="&quot;YOUR TRUSTED HIT. ICONIC COMIC SOUL.&quot;"
+            data-mode-text-boutique="&quot;WEAPONS OF PRECISION WITH COMIC BOOK ATTITUDE.&quot;">
+            "YOUR TRUSTED HIT. ICONIC COMIC SOUL."
+          </h2>
+          <p class="hero-description"
+            data-mode-text-restomod="Don't abandon the cue you play best with. Ship your favorite playing weapon to Central Pennsylvania—Travis strips the old clear coat, wraps it in 360° genuine vintage comic decoupage, and seals it under 12 coats of high-impact resin armor in 10–14 days."
+            data-mode-text-boutique="Where authentic underground pop-art collides with master wood lathe precision. Each cue is an original, tour-ready masterpiece handcrafted by Travis Kloss—encasing vintage comic book pages and exotic tonewoods in bulletproof ceramic resin. Turnaround: 8–10 weeks.">
+            Don't abandon the cue you play best with. Ship your favorite playing weapon to Central Pennsylvania—Travis strips the old clear coat, wraps it in 360° genuine vintage comic decoupage, and seals it under 12 coats of high-impact resin armor in 10–14 days.
           </p>
 
           <div class="hero-actions">
-            <a href="#arsenal-section" class="comic-btn btn-primary">
-              <span class="btn-pow">POW!</span> EXPLORE THE ARSENAL ⚡
+            <a href="#commission-section" class="comic-btn btn-primary" id="hero-primary-btn"
+              data-mode-text-restomod="POW! RE-SKIN YOUR CUE ($395+) 🎱"
+              data-mode-text-boutique="POW! EXPLORE THE ARSENAL ⚡">
+              <span class="btn-pow">POW!</span> RE-SKIN YOUR CUE ($395+) 🎱
             </a>
-            <a href="#commission-section" class="comic-btn btn-secondary">
-              COMMISSION A CUSTOM BUILD 🎱
+            <a href="#arsenal-section" class="comic-btn btn-secondary"
+              data-mode-text-restomod="BROWSE FINISHED STYLES ⚡"
+              data-mode-text-boutique="COMMISSION A CUSTOM BUILD 🎱">
+              BROWSE FINISHED STYLES ⚡
             </a>
           </div>
         </div>
@@ -111,25 +150,41 @@
     <!-- Live Vault Drop Banner -->
     <section id="vault-drop-banner" class="vault-drop-section">
       <div class="vault-drop-card">
-        <div class="drop-status-tag">⚡ OFFICIAL VAULT DROP #001: NOW LIVE</div>
+        <div class="drop-status-tag"
+          data-mode-text-restomod="🔧 BENCH QUEUE: 4 OF 8 MAIL-IN SLOTS OPEN THIS MONTH"
+          data-mode-text-boutique="⚡ OFFICIAL VAULT DROP #001: NOW LIVE">
+          🔧 BENCH QUEUE: 4 OF 8 MAIL-IN SLOTS OPEN THIS MONTH
+        </div>
         <div class="drop-content-grid">
           <div class="drop-text-col">
-            <h2 class="drop-heading">THE HEROIC & COSMIC 1-OF-1 ARSENAL</h2>
-            <p class="drop-description">
-              Handcrafted in Central Pennsylvania by master cue maker Travis Kloss. Every cue in this drop is a numbered, 
-              one-of-a-kind tournament weapon permanently registered in the FahCues Master Registry. 
-              <strong>When a 1-of-1 piece is claimed, it is locked forever.</strong>
+            <h2 class="drop-heading"
+              data-mode-text-restomod="SEND-IN RE-SKINNING & BESPOKE TRANSFORMATIONS"
+              data-mode-text-boutique="THE HEROIC & COSMIC 1-OF-1 ARSENAL">
+              SEND-IN RE-SKINNING & BESPOKE TRANSFORMATIONS
+            </h2>
+            <p class="drop-description"
+              data-mode-text-restomod="Keep your favorite balance and joint hit. Send your cue to Central Pennsylvania: Travis hand-applies 360° vintage comic decoupage and 12 hand-buffed coats of high-impact UV clear coat in just 10–14 days. Or claim a turnkey custom cue ready for dispatch."
+              data-mode-text-boutique="Handcrafted in Central Pennsylvania by master cue maker Travis Kloss. Every cue in this drop is a numbered, one-of-a-kind tournament weapon permanently registered in the FahCues Master Registry. When a 1-of-1 piece is claimed, it is locked forever.">
+              Keep your favorite balance and joint hit. Send your cue to Central Pennsylvania: Travis hand-applies 360° vintage comic decoupage and 12 hand-buffed coats of high-impact UV clear coat in just 10–14 days. Or claim a turnkey custom cue ready for dispatch.
             </p>
             <div class="drop-highlights">
               <span class="highlight-chip">★ 100% Genuine Vintage Comic Decoupage</span>
-              <span class="highlight-chip">★ Zero-Tolerance Radial & 3/8x10 Pins</span>
-              <span class="highlight-chip">★ Serialized Certificate of Authenticity (COA)</span>
+              <span class="highlight-chip">★ 12-Coat Automotive UV Clear Armor</span>
+              <span class="highlight-chip">★ 10–14 Day Rapid Workshop Turnaround</span>
             </div>
           </div>
           <div class="drop-action-col">
             <div class="drop-stat-box">
-              <div class="stat-number">5 OF 6</div>
-              <div class="stat-label">SERIALIZED WEAPONS AVAILABLE</div>
+              <div class="stat-number"
+                data-mode-text-restomod="4 OF 8"
+                data-mode-text-boutique="5 OF 6">
+                4 OF 8
+              </div>
+              <div class="stat-label"
+                data-mode-text-restomod="MAIL-IN BENCH SLOTS AVAILABLE"
+                data-mode-text-boutique="SERIALIZED WEAPONS AVAILABLE">
+                MAIL-IN BENCH SLOTS AVAILABLE
+              </div>
             </div>
             <button id="vip-trigger-section" class="comic-btn btn-secondary vip-open-btn">
               <span>🔔</span> JOIN VIP DROP ALERTS
@@ -226,27 +281,43 @@
       <div class="partnership-banner-box">
         <div class="partnership-inner">
           <div class="partner-card">
-            <div class="partner-role">MASTER CRAFTSMAN & LATHE DIRECTOR</div>
+            <div class="partner-role"
+              data-mode-text-restomod="MASTER RESTOMOD ARTIST & FINISH DIRECTOR"
+              data-mode-text-boutique="MASTER CRAFTSMAN & LATHE DIRECTOR">
+              MASTER RESTOMOD ARTIST & FINISH DIRECTOR
+            </div>
             <h3 class="partner-name">TRAVIS KLOSS</h3>
-            <p class="partner-bio">
-              Focuses 100% on wood stabilization, precision hand-lathe tapering, authentic vintage comic decoupage, and acoustic hit-testing on tournament cloth. Zero compromises on tournament straightness.
+            <p class="partner-bio"
+              data-mode-text-restomod="Focuses 100% on precision finish stripping, authentic vintage comic decoupage lamination, and 12-coat UV clear coat mirror buffing. Fast 10–14 day bench turnaround."
+              data-mode-text-boutique="Focuses 100% on wood stabilization, precision hand-lathe tapering, authentic vintage comic decoupage, and acoustic hit-testing on tournament cloth. Zero compromises on tournament straightness.">
+              Focuses 100% on precision finish stripping, authentic vintage comic decoupage lamination, and 12-coat UV clear coat mirror buffing. Fast 10–14 day bench turnaround.
             </p>
           </div>
 
           <div class="partnership-divider">⚡</div>
 
           <div class="partner-card">
-            <div class="partner-role">MANAGING PARTNER & MASTER REGISTRAR</div>
+            <div class="partner-role"
+              data-mode-text-restomod="MANAGING PARTNER & CLIENT CONCIERGE"
+              data-mode-text-boutique="MANAGING PARTNER & MASTER REGISTRAR">
+              MANAGING PARTNER & CLIENT CONCIERGE
+            </div>
             <h3 class="partner-name">ANTONIO MOSES</h3>
-            <p class="partner-bio">
-              Oversees collector intake, specification accuracy, digital registry provenance, and white-glove insured delivery. Ensures every weapon is delivered with an official Certificate of Authenticity.
+            <p class="partner-bio"
+              data-mode-text-restomod="Coordinates inbound client shipping, PVC protective tube guidelines, vintage comic curation, 50% bench deposits, and insured return dispatch."
+              data-mode-text-boutique="Oversees collector intake, specification accuracy, digital registry provenance, and white-glove insured delivery. Ensures every weapon is delivered with an official Certificate of Authenticity.">
+              Coordinates inbound client shipping, PVC protective tube guidelines, vintage comic curation, 50% bench deposits, and insured return dispatch.
             </p>
           </div>
         </div>
 
         <div class="provenance-seal-bar">
           <span class="seal-icon">📜</span>
-          <span class="seal-text">EVERY CUE INCLUDES AN OFFICIAL SERIALIZED CERTIFICATE OF AUTHENTICITY (COA)</span>
+          <span class="seal-text"
+            data-mode-text-restomod="EVERY TRANSFORMATION RECEIVES AN OFFICIAL FAHCUES RESTOMOD PROVENANCE CARD"
+            data-mode-text-boutique="EVERY CUE INCLUDES AN OFFICIAL SERIALIZED CERTIFICATE OF AUTHENTICITY (COA)">
+            EVERY TRANSFORMATION RECEIVES AN OFFICIAL FAHCUES RESTOMOD PROVENANCE CARD
+          </span>
           <span class="seal-serial-demo">SAMPLE ID: FC-2026-001</span>
         </div>
       </div>
@@ -284,9 +355,21 @@
     <!-- Section 4: Commission Custom Cue Estimator -->
     <section id="commission-section" class="section-wrapper">
       <div class="comic-section-header">
-        <div class="comic-caption-box">THE FORGE: BUILD YOUR CUSTOM WEAPON</div>
-        <h2 class="comic-heading-lg">COMMISSION YOUR CUE</h2>
-        <p class="comic-subheading">Choose your components, calculate your live estimate, and submit your request to Travis.</p>
+        <div class="comic-caption-box"
+          data-mode-text-restomod="THE RESTOMOD STUDIO: TRANSFORM YOUR WEAPON"
+          data-mode-text-boutique="THE FORGE: BUILD YOUR CUSTOM WEAPON">
+          THE RESTOMOD STUDIO: TRANSFORM YOUR WEAPON
+        </div>
+        <h2 class="comic-heading-lg"
+          data-mode-text-restomod="RESTOMOD ESTIMATOR & MAIL-IN INTAKE"
+          data-mode-text-boutique="COMMISSION YOUR BESPOKE CUE">
+          RESTOMOD ESTIMATOR & MAIL-IN INTAKE
+        </h2>
+        <p class="comic-subheading"
+          data-mode-text-restomod="Choose your base cue option, coverage, and protective armor to calculate your live estimate and reserve a bench slot."
+          data-mode-text-boutique="Choose your components, calculate your live estimate, and submit your request to Travis.">
+          Choose your base cue option, coverage, and protective armor to calculate your live estimate and reserve a bench slot.
+        </p>
       </div>
 
       <div id="commission-form-container">

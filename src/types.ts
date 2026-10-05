@@ -63,7 +63,20 @@ export interface CueItem {
   dropStatus: 'available' | 'reserved' | 'commission-only';
   /** Required 50% non-refundable deposit to lock build slot */
   depositAmount: number;
+  /** Restomod Re-Skin estimate when customer provides base cue */
+  restomodPrice?: number;
+  /** Restomod 50% bench deposit */
+  restomodDeposit?: number;
+  /** Restomod edition or service tag */
+  restomodTag?: string;
 }
+
+/**
+ * Operational model of the FahCues workshop for demoing to Travis Kloss:
+ * - 'restomod': Current simpler reality — Bring Your Own Weapon (BYOW) re-skinning, resurfacing, 10–14 day turnaround, $395–$525 pricing.
+ * - 'boutique': Step-up boutique production — Full 1-of-1 bespoke builds, tonewood curing, radial joints, 8–10 week turnaround, $1,250+ pricing.
+ */
+export type ShopMode = 'restomod' | 'boutique';
 
 /**
  * Options chosen in the Custom Cue Commission Estimator.

@@ -95,6 +95,42 @@ class ShopModeManager {
 
     this.updateToggleButtonsUI();
     this.updateDeclarativeTextElements();
+
+    // Initialize sticky scroll watcher to collapse explanation and shrink switcher mid-page
+    this.initStickyScrollWatcher();
+  }
+
+  /**
+   * Watches page scroll position to collapse the switcher bar into an ultra-compact
+   * sticky HUD when scrolling down mid-page, removing explanatory text while keeping
+   * instantaneous 1-click toggling available at all times.
+   */
+  private initStickyScrollWatcher(): void {
+    const switchBar = document.querySelector<HTMLElement>('.model-switch-bar');
+    if (!switchBar) return;
+
+    // Throttle via requestAnimationFrame for 60fps scrolling performance
+    let isTicking = false;
+
+    const onScroll = (): void => {
+      if (!isTicking) {
+        window.requestAnimationFrame(() => {
+          // Collapse into compact mode once scrolled past initial header zone (40px)
+          const shouldCompact = window.scrollY > 40;
+          if (shouldCompact) {
+            switchBar.classList.add('is-scrolled');
+          } else {
+            switchBar.classList.remove('is-scrolled');
+          }
+          isTicking = false;
+        });
+        isTicking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    // Check initial position on mount in case the browser restored scroll position
+    onScroll();
   }
 
   /**

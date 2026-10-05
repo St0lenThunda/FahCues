@@ -50,7 +50,7 @@
 1. **Strategic Call**: **HARD REJECTION**. Selling at $800 destroys brand equity and nets less than minimum wage after factoring in $320 in materials and 20+ hours of lathe and curing labor.  
 2. **Antonio's Counter Script**:  
 ```text
-"Hey [Name], thanks for the interest! We completely understand having a firm budget. However, our prices reflect 12 hand-buffed coats of UV resin, 18-month cured Canadian tonewoods, and zero-tolerance radial joints turned by hand in Minneapolis. We don’t discount custom builds, as it wouldn't be fair to the collectors who pay full value. If $800 is your hard cap, we occasionally release production break weapons around $950—would you like me to ping you when the next drop goes live?"
+"Hey [Name], thanks for the interest! We completely understand having a firm budget. However, our prices reflect 12 hand-buffed coats of UV resin, 18-month cured Canadian tonewoods, and zero-tolerance radial joints turned by hand in Central Pennsylvania. We don’t discount custom builds, as it wouldn't be fair to the collectors who pay full value. If $800 is your hard cap, we occasionally release production break weapons around $950—would you like me to ping you when the next drop goes live?"
 ```
 
 ---
@@ -200,7 +200,7 @@ Gross Revenue: $6,400.00
 **Advisor Output**:  
 1. **Antonio's De-escalation Script**:  
 ```text
-"Hi [Name], during final spin-dial inspection this morning, Travis noted a microscopic clear-coat tension line near the bumper that failed our tournament tolerance checklist. We never let an imperfect coat leave Minneapolis. Travis is hand-sanding the butt sleeve back and applying two fresh coats of ceramic shield. This pushes delivery out by 10 days for proper degassing. We appreciate your patience while we ensure your cue is 100% flawless for a lifetime."
+"Hi [Name], during final spin-dial inspection this morning, Travis noted a microscopic clear-coat tension line near the bumper that failed our tournament tolerance checklist. We never let an imperfect coat leave Central Pennsylvania. Travis is hand-sanding the butt sleeve back and applying two fresh coats of ceramic shield. This pushes delivery out by 10 days for proper degassing. We appreciate your patience while we ensure your cue is 100% flawless for a lifetime."
 ```
 
 ---

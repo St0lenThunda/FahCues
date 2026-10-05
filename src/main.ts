@@ -212,16 +212,25 @@ class FahCuesApp {
 
   /**
    * Initializes the Interactive Cue Anatomy Explorer.
+   * Dynamically synchronizes educational text, high-res macro photography, and zone badges.
    */
   private initAnatomyExplorer(): void {
     const listContainer = document.getElementById('anatomy-buttons-list');
     const displayPanel = document.getElementById('anatomy-display-panel');
+    const activeImg = document.getElementById('anatomy-active-img') as HTMLImageElement | null;
+    const badgeOverlay = document.getElementById('anatomy-badge-overlay');
+    const captionStrip = document.getElementById('anatomy-caption-strip');
     if (!listContainer || !displayPanel) return;
 
     listContainer.innerHTML = ANATOMY_PARTS.map((part, idx) => `
       <button class="anatomy-part-btn ${idx === 0 ? 'active' : ''}" data-part-id="${part.id}">
-        <div class="part-btn-name">${part.name}</div>
-        <div class="part-btn-callout">${part.callout}</div>
+        <div class="part-btn-thumb-box">
+          <img src="${part.image}" alt="${part.name}" class="part-btn-thumb" />
+        </div>
+        <div class="part-btn-text">
+          <div class="part-btn-name">${part.name}</div>
+          <div class="part-btn-callout">${part.callout}</div>
+        </div>
       </button>
     `).join('');
 
@@ -231,6 +240,21 @@ class FahCuesApp {
         <p class="anatomy-physics-body">${part.physicsExplanation}</p>
         <div class="anatomy-materials-tag">🛠️ MASTER MATERIALS: ${part.materialsUsed}</div>
       `;
+
+      if (activeImg) {
+        activeImg.classList.add('img-switching');
+        activeImg.src = part.image;
+        activeImg.alt = part.imageAlt;
+        setTimeout(() => activeImg.classList.remove('img-switching'), 180);
+      }
+
+      if (badgeOverlay) {
+        badgeOverlay.textContent = `ZONE: ${part.name.toUpperCase()}`;
+      }
+
+      if (captionStrip) {
+        captionStrip.textContent = part.callout;
+      }
     };
 
     updateDisplay(ANATOMY_PARTS[0]);

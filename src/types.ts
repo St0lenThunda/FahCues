@@ -97,4 +97,8 @@ export interface AnatomyPart {
   physicsExplanation: string;
   /** Materials Travis Kloss employs for this component */
   materialsUsed: string;
+  /** High-resolution visual schematic or macro photo path */
+  image: string;
+  /** Descriptive alt tag for accessibility and comic labeling */
+  imageAlt: string;
 }

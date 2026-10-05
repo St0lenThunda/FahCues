@@ -32,6 +32,7 @@ class FahCuesApp {
     this.commissionController = new CommissionController();
     this.attachCardTiltPhysics();
     this.initSmoothNav();
+    this.initVipModal();
   }
 
   /**
@@ -75,7 +76,9 @@ class FahCuesApp {
 
     gridEl.innerHTML = filtered.map((cue) => `
       <article class="cue-card" data-id="${cue.id}">
-        <div class="card-badge">${cue.badgeText}</div>
+        <div class="card-badge">
+          <span class="serial-pill">${cue.serialNumber}</span> ${cue.badgeText}
+        </div>
         
         <div class="card-image-wrap" data-cue-id="${cue.id}">
           <img src="${cue.image}" alt="${cue.title}" loading="lazy" />
@@ -83,6 +86,10 @@ class FahCuesApp {
         </div>
 
         <div class="card-body">
+          <div class="card-status-pill ${cue.dropStatus}">
+            ${cue.dropStatus === 'available' ? '🟢 1-OF-1 AVAILABLE FOR DISPATCH' : '🔒 RESERVED IN VAULT'}
+          </div>
+
           <h3 class="card-title">${cue.title}</h3>
           <div class="card-subtitle">${cue.subtitle}</div>
           <p class="card-story-snippet">${cue.story}</p>
@@ -102,14 +109,26 @@ class FahCuesApp {
             </div>
           </div>
 
-          <div class="card-footer">
-            <div class="card-price">
-              <span>FROM</span>
-              $${cue.priceEstimate}
+          <div class="card-footer-stack">
+            <div class="card-pricing-row">
+              <div class="card-price-val">$${cue.priceEstimate.toLocaleString()}</div>
+              <div class="card-deposit-val">50% Deposit: $${cue.depositAmount.toLocaleString()}</div>
             </div>
-            <button class="comic-btn btn-primary inspect-btn" data-cue-id="${cue.id}">
-              INSPECT SPECS 🔍
-            </button>
+
+            <div class="card-actions-row">
+              <button class="comic-btn btn-primary inspect-btn" data-cue-id="${cue.id}">
+                INSPECT SPECS 🔍
+              </button>
+              ${cue.dropStatus === 'available' ? `
+                <button class="comic-btn btn-secondary claim-btn" data-cue-id="${cue.id}">
+                  CLAIM WEAPON 🎱
+                </button>
+              ` : `
+                <button class="comic-btn btn-disabled" disabled>
+                  RESERVED 🔒
+                </button>
+              `}
+            </div>
           </div>
         </div>
       </article>
@@ -125,6 +144,27 @@ class FahCuesApp {
           modalManager.openCueModal(cue, (inspectedCue) => {
             this.handleCommissionFromModal(inspectedCue);
           });
+        }
+      });
+    });
+
+    // Attach click listeners to Claim Weapon buttons
+    gridEl.querySelectorAll('.claim-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const target = e.currentTarget as HTMLElement;
+        const cueId = target.dataset.cueId;
+        const cue = CUES_DATA.find((c) => c.id === cueId);
+        if (cue && this.commissionController) {
+          this.commissionController.prefillVaultClaim(cue.title, cue.serialNumber, cue.priceEstimate);
+          const formEl = document.getElementById('commission-section');
+          formEl?.scrollIntoView({ behavior: 'smooth' });
+          comicAudio.playCrack();
+          modalManager.showToast(
+            'WEAPON STAGED FOR CLAIM ⚡',
+            `Selected ${cue.title} (${cue.serialNumber}). Fill out your contact details below to secure your 50% deposit slot!`,
+            'pow'
+          );
         }
       });
     });
@@ -252,6 +292,55 @@ class FahCuesApp {
           }
         }
       });
+    });
+  }
+
+  /**
+   * Initializes the VIP Drop Alerts modal and intake form.
+   */
+  private initVipModal(): void {
+    const modal = document.getElementById('vip-modal');
+    const closeBtn = document.getElementById('vip-modal-close');
+    const triggers = document.querySelectorAll('#vip-trigger-banner, #vip-trigger-section, .vip-open-btn');
+    const form = document.getElementById('vip-form') as HTMLFormElement;
+
+    if (!modal) return;
+
+    const openModal = () => {
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      comicAudio.playCrack();
+    };
+
+    const closeModal = () => {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      comicAudio.playSwoosh();
+    };
+
+    triggers.forEach((btn) => btn.addEventListener('click', openModal));
+    closeBtn?.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nameInput = document.getElementById('vip-name') as HTMLInputElement;
+      const emailInput = document.getElementById('vip-email') as HTMLInputElement;
+
+      const name = nameInput?.value || 'Collector';
+      const email = emailInput?.value || '';
+
+      closeModal();
+      form.reset();
+
+      modalManager.showToast(
+        'VIP DROP ACCESS CONFIRMED! ⚡',
+        `Welcome to the inner circle, ${name}! You will receive drop alerts at ${email} exactly 1 hour before future 1-of-1 pieces go live.`,
+        'chime'
+      );
     });
   }
 }

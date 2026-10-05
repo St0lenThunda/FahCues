@@ -55,6 +55,14 @@ export interface CueItem {
   soundEffect: 'crack' | 'pow' | 'swoosh' | 'ding';
   /** Base starting value or commission estimate */
   priceEstimate: number;
+  /** Unique permanent serial number for registry provenance (e.g. FC-2026-001) */
+  serialNumber: string;
+  /** Serialized Drop edition label (e.g. 'VAULT DROP #001') */
+  dropEdition: string;
+  /** Availability status for immediate purchase or custom queue */
+  dropStatus: 'available' | 'reserved' | 'commission-only';
+  /** Required 50% non-refundable deposit to lock build slot */
+  depositAmount: number;
 }
 
 /**

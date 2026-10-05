@@ -1,7 +1,7 @@
 /**
  * @file cuesData.ts
- * @description Catalog and specifications of custom billiard cues handcrafted by Travis Kloss.
- * Incorporates authentic image assets from the workshop and downloads folder.
+ * @description Master Catalog, Serialized Registry, and Vault Drops handcrafted by Travis Kloss.
+ * Incorporates authentic image assets, permanent registry serial numbers, and 50% deposit structures.
  */
 
 import type { CueItem } from './types.ts';
@@ -27,9 +27,13 @@ export const CUES_DATA: CueItem[] = [
       tip: 'Kamui Black Medium 9-Layer Leather',
       finish: 'Automotive-Grade Ultra High-Gloss Acrylic Urethane'
     },
-    badgeText: 'MARVEL ARSENAL',
+    badgeText: 'VAULT DROP 1-OF-1',
     soundEffect: 'crack',
-    priceEstimate: 1250
+    priceEstimate: 1250,
+    serialNumber: 'FC-2026-001',
+    dropEdition: 'VAULT DROP #001: 1-OF-1',
+    dropStatus: 'available',
+    depositAmount: 625
   },
   {
     id: 'jedi-master-lightsaber',
@@ -51,9 +55,13 @@ export const CUES_DATA: CueItem[] = [
       tip: 'Predator Victory Soft 8-Layer',
       finish: 'Matte Cerakote & Diamond Satin Clear'
     },
-    badgeText: 'LUCASFILM TRIBUTE',
+    badgeText: 'VAULT DROP 1-OF-1',
     soundEffect: 'swoosh',
-    priceEstimate: 1450
+    priceEstimate: 1450,
+    serialNumber: 'FC-2026-002',
+    dropEdition: 'VAULT DROP #001: 1-OF-1',
+    dropStatus: 'available',
+    depositAmount: 725
   },
   {
     id: 'golden-age-squadron',
@@ -75,9 +83,13 @@ export const CUES_DATA: CueItem[] = [
       tip: 'Zan Premium Grip Medium',
       finish: 'Triple-Stage Glass Lacquer'
     },
-    badgeText: 'MASTER COLLECTION',
+    badgeText: 'RESERVED DROP',
     soundEffect: 'pow',
-    priceEstimate: 1600
+    priceEstimate: 1600,
+    serialNumber: 'FC-2026-003',
+    dropEdition: 'VAULT DROP #001: 1-OF-1',
+    dropStatus: 'reserved',
+    depositAmount: 800
   },
   {
     id: 'workshop-heavyweights',
@@ -99,9 +111,13 @@ export const CUES_DATA: CueItem[] = [
       tip: 'Moori Medium Pigskin',
       finish: 'Hand-Rubbed Tung Oil & Poly-Gloss Shield'
     },
-    badgeText: 'WORKSHOP ORIGINAL',
+    badgeText: 'VAULT DROP 1-OF-1',
     soundEffect: 'crack',
-    priceEstimate: 1350
+    priceEstimate: 1350,
+    serialNumber: 'FC-2026-004',
+    dropEdition: 'VAULT DROP #001: 1-OF-1',
+    dropStatus: 'available',
+    depositAmount: 675
   },
   {
     id: 'smokin-eight-break',
@@ -123,9 +139,13 @@ export const CUES_DATA: CueItem[] = [
       tip: 'Taom 2.0 Break & Jump Tip',
       finish: 'Ceramic Scratch-Proof Armored Gloss'
     },
-    badgeText: 'HEAVY ARTILLERY',
+    badgeText: 'HEAVY BREAK WEAPON',
     soundEffect: 'pow',
-    priceEstimate: 1100
+    priceEstimate: 1100,
+    serialNumber: 'FC-2026-005',
+    dropEdition: 'BREAK WEAPON RUN',
+    dropStatus: 'available',
+    depositAmount: 550
   },
   {
     id: 'tournament-championship-felt',
@@ -147,8 +167,12 @@ export const CUES_DATA: CueItem[] = [
       tip: 'G2 Medium Japanese Pigskin',
       finish: 'Diamond-Hard Crystal Clear'
     },
-    badgeText: 'TOURNAMENT READY',
+    badgeText: 'APEX TOUR SERIES',
     soundEffect: 'crack',
-    priceEstimate: 1550
+    priceEstimate: 1550,
+    serialNumber: 'FC-2026-006',
+    dropEdition: 'APEX TOUR RUN',
+    dropStatus: 'available',
+    depositAmount: 775
   }
 ];

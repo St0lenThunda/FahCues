@@ -25,8 +25,12 @@
       <div class="issue-left">
         <span class="issue-badge">VOL. 1 • NO. 1</span>
         <span class="issue-text">FAH-CUES COMICS <span class="issue-edition">• OCTOBER 2026 EDITION</span></span>
+        <span class="vault-drop-pill">⚡ VAULT DROP #001: ACTIVE</span>
       </div>
       <div class="banner-controls">
+        <button id="vip-trigger-banner" class="vip-header-btn" aria-label="Join VIP drop list">
+          🔔 VIP DROP ALERTS
+        </button>
         <button id="audio-toggle-btn" class="audio-toggle-btn" aria-label="Toggle comic sound effects">
           <span>⚡</span> SOUND FX: ON
         </button>
@@ -44,8 +48,9 @@
       </a>
 
       <div class="nav-links">
+        <a href="#vault-drop-banner" class="nav-comic-btn highlight-vault">⚡ VAULT DROPS</a>
         <a href="#arsenal-section" class="nav-comic-btn">THE ARSENAL</a>
-        <a href="#maker-section" class="nav-comic-btn">MEET TRAVIS</a>
+        <a href="#maker-section" class="nav-comic-btn">THE FORGE</a>
         <a href="#anatomy-section" class="nav-comic-btn">ANATOMY</a>
         <a href="#commission-section" class="nav-comic-btn">COMMISSION</a>
       </div>
@@ -97,6 +102,37 @@
         <div class="ribbon-item"><span>ZERO-PLAY RADIAL & 3/8x10 JOINTS</span><span class="ribbon-star">★</span></div>
       </div>
     </div>
+
+    <!-- Live Vault Drop Banner -->
+    <section id="vault-drop-banner" class="vault-drop-section">
+      <div class="vault-drop-card">
+        <div class="drop-status-tag">⚡ OFFICIAL VAULT DROP #001: NOW LIVE</div>
+        <div class="drop-content-grid">
+          <div class="drop-text-col">
+            <h2 class="drop-heading">THE HEROIC & COSMIC 1-OF-1 ARSENAL</h2>
+            <p class="drop-description">
+              Handcrafted in Minneapolis by master cue maker Travis Kloss. Every cue in this drop is a numbered, 
+              one-of-a-kind tournament weapon permanently registered in the FahCues Master Registry. 
+              <strong>When a 1-of-1 piece is claimed, it is locked forever.</strong>
+            </p>
+            <div class="drop-highlights">
+              <span class="highlight-chip">★ 100% Genuine Vintage Comic Decoupage</span>
+              <span class="highlight-chip">★ Zero-Tolerance Radial & 3/8x10 Pins</span>
+              <span class="highlight-chip">★ Serialized Certificate of Authenticity (COA)</span>
+            </div>
+          </div>
+          <div class="drop-action-col">
+            <div class="drop-stat-box">
+              <div class="stat-number">5 OF 6</div>
+              <div class="stat-label">SERIALIZED WEAPONS AVAILABLE</div>
+            </div>
+            <button id="vip-trigger-section" class="comic-btn btn-secondary vip-open-btn">
+              <span>🔔</span> JOIN VIP DROP ALERTS
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Section 1: The Arsenal (Gallery) -->
     <section id="arsenal-section" class="section-wrapper">
@@ -180,6 +216,35 @@
           </div>
         </article>
       </div>
+
+      <!-- The Forge Partnership & Provenance Card -->
+      <div class="partnership-banner-box">
+        <div class="partnership-inner">
+          <div class="partner-card">
+            <div class="partner-role">MASTER CRAFTSMAN & LATHE DIRECTOR</div>
+            <h3 class="partner-name">TRAVIS KLOSS</h3>
+            <p class="partner-bio">
+              Focuses 100% on wood stabilization, precision hand-lathe tapering, authentic vintage comic decoupage, and acoustic hit-testing on tournament cloth. Zero compromises on tournament straightness.
+            </p>
+          </div>
+
+          <div class="partnership-divider">⚡</div>
+
+          <div class="partner-card">
+            <div class="partner-role">MANAGING PARTNER & MASTER REGISTRAR</div>
+            <h3 class="partner-name">ANTONIO MOSES</h3>
+            <p class="partner-bio">
+              Oversees collector intake, specification accuracy, digital registry provenance, and white-glove insured delivery. Ensures every weapon is delivered with an official Certificate of Authenticity.
+            </p>
+          </div>
+        </div>
+
+        <div class="provenance-seal-bar">
+          <span class="seal-icon">📜</span>
+          <span class="seal-text">EVERY CUE INCLUDES AN OFFICIAL SERIALIZED CERTIFICATE OF AUTHENTICITY (COA)</span>
+          <span class="seal-serial-demo">SAMPLE ID: FC-2026-001</span>
+        </div>
+      </div>
     </section>
 
     <!-- Section 3: Interactive Cue Anatomy Explorer -->
@@ -243,11 +308,46 @@
         </div>
       </div>
 
+      <div class="legal-compliance-banner">
+        <p>
+          <strong>LEGAL & FIRST SALE DOCTRINE COMPLIANCE NOTICE:</strong> 
+          FahCues is an independent custom billiard cue studio handcrafted by Travis Kloss and operated by Antonio Moses. 
+          Cues featuring vintage comic book imagery are original, one-of-a-kind artistic pop-art homages created using legitimately purchased, 
+          authentic vintage physical comic publications under the First Sale Doctrine (17 U.S.C. § 109). 
+          FahCues is not affiliated with, sponsored by, or endorsed by Marvel Characters, Inc., DC Comics, Lucasfilm Ltd., or any of their parent corporations or subsidiaries.
+        </p>
+      </div>
+
       <div class="footer-bottom-bar">
-        <span>© 2026 FahCues. All rights reserved. Handcrafted by Travis Kloss.</span>
+        <span>© 2026 FahCues. Handcrafted by Travis Kloss • Operations & Registry Managed by Antonio Moses.</span>
         <span>Engineered with Pure Comic Energy & Vite + Vanilla TypeScript</span>
       </div>
     </footer>
+
+    <!-- VIP Drop Alerts Modal -->
+    <div id="vip-modal" class="comic-modal-overlay" aria-hidden="true">
+      <div class="comic-modal-card vip-modal-window">
+        <button id="vip-modal-close" class="comic-modal-close" aria-label="Close VIP modal">✕</button>
+        <div class="vip-modal-header">
+          <div class="comic-burst-tag">⚡ VIP EARLY ACCESS</div>
+          <h3 class="vip-modal-title">THE VAULT DROP REGISTRY</h3>
+          <p class="vip-modal-sub">Get notified 1 hour before 1-of-1 master cues drop on the site. Zero spam. Pure weapons.</p>
+        </div>
+        <form id="vip-form" class="vip-modal-form">
+          <input type="text" id="vip-name" class="comic-input" placeholder="Your Name or Player Handle *" required />
+          <input type="email" id="vip-email" class="comic-input" placeholder="Your Email Address *" required />
+          <select id="vip-interest" class="comic-select" aria-label="Drop Collection Interest">
+            <option value="all">All Vault Drops & 1-of-1 Releases</option>
+            <option value="comic-wraps">Vintage Comic Wraps (Marvel / DC)</option>
+            <option value="lightsabers">Pop-Culture & Lightsaber Cues</option>
+            <option value="break-cues">Heavy Artillery Break Weapons</option>
+          </select>
+          <button type="submit" class="comic-btn btn-primary submit-btn">
+            <span class="btn-pow">POW!</span> LOCK IN VIP DROP ACCESS 🎱
+          </button>
+        </form>
+      </div>
+    </div>
 
     <script type="module" src="/src/main.ts"></script>
   </body>

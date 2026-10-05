@@ -1,7 +1,8 @@
 /**
  * @file commission.ts
- * @description Interactive Custom Cue Commission Estimator and Request Engine.
- * Dynamically computes estimated cost based on cue anatomy choices, materials, and joint mechanics.
+ * @description Interactive Custom Cue Commission Estimator and Commercial Intake Engine.
+ * Dynamically computes estimated cost and required 50% deposit based on cue anatomy,
+ * and transparently displays shop lead times and craft policies.
  */
 
 import { modalManager } from './modal.ts';
@@ -30,7 +31,7 @@ export const STYLES: StyleOption[] = [
   {
     id: 'exotic-points',
     name: 'Exotic Hardwood Spliced Points',
-    description: 'Traditional 4 or 6-point floating splices using Birdseye Maple, Gabon Ebony, Cocobolo, or Bocote.',
+    description: 'Traditional 4 or 6-point floating splices using Birdseye Maple, Gabon Ebony, Cocobolo, or Purpleheart.',
     basePrice: 950
   },
   {
@@ -48,10 +49,10 @@ export const STYLES: StyleOption[] = [
 ];
 
 export const JOINT_PINS: ComponentOption[] = [
-  { id: 'radial', name: 'Radial Pin (Solid Brass onto Hard Maple) — Crisp feel', priceDelta: 50 },
-  { id: '3-8-10', name: '3/8 x 10 Modified Flat-Faced Joint — Warm feedback', priceDelta: 40 },
-  { id: '5-16-14', name: '5/16 x 14 Piloted Stainless Joint — High acoustics', priceDelta: 60 },
-  { id: 'uniloc', name: 'Uni-Loc Quick Release — Rapid breakdown', priceDelta: 75 }
+  { id: 'radial', name: 'Radial Pin (Solid Brass onto Hard Maple) — Crisp acoustic hit', priceDelta: 50 },
+  { id: '3-8-10', name: '3/8 x 10 Modified Flat-Faced Joint — Warm solid feedback', priceDelta: 40 },
+  { id: '5-16-14', name: '5/16 x 14 Piloted Stainless Joint — High-energy click', priceDelta: 60 },
+  { id: 'uniloc', name: 'Uni-Loc Quick Release — Rapid tournament breakdown', priceDelta: 75 }
 ];
 
 export const SHAFTS: ComponentOption[] = [
@@ -68,7 +69,7 @@ export const WRAPS: ComponentOption[] = [
 ];
 
 /**
- * Manages the interactive state of the commission form.
+ * Manages the interactive state of the commission form and deposit calculator.
  */
 export class CommissionController {
   private selectedStyle: string = STYLES[0].id;
@@ -94,59 +95,86 @@ export class CommissionController {
   }
 
   /**
+   * Calculates required 50% non-refundable deposit.
+   */
+  public calculateDeposit(): number {
+    return Math.round(this.calculateTotal() * 0.5);
+  }
+
+  /**
    * Pre-fills the commission configurator with specifications from an inspected cue.
    */
   public prefillWithCueStyle(styleId: string): void {
     const match = STYLES.find((s) => s.id === styleId);
-    if (match) {
-      this.selectedStyle = match.id;
-      const radio = document.querySelector<HTMLInputElement>(`input[name="cue-style"][value="${match.id}"]`);
-      if (radio) radio.checked = true;
-      this.updateTotalDisplay();
+    if (!match) return;
+
+    this.selectedStyle = match.id;
+    const radio = document.querySelector<HTMLInputElement>(`input[name="cue-style"][value="${match.id}"]`);
+    if (radio) {
+      radio.checked = true;
+      const allLabels = document.querySelectorAll('.style-choice-card');
+      allLabels.forEach((l) => l.classList.remove('selected'));
+      radio.closest('.style-choice-card')?.classList.add('selected');
     }
+    this.updateTotalDisplay();
   }
 
   /**
-   * Updates the live price tag in the DOM.
+   * Pre-fills the form to claim a specific serialized Vault Drop piece.
+   */
+  public prefillVaultClaim(cueTitle: string, serialNumber: string, price: number): void {
+    const notesEl = document.getElementById('custom-notes') as HTMLTextAreaElement;
+    if (notesEl) {
+      notesEl.value = `[VAULT DROP INQUIRY] Interested in claiming ${cueTitle} (Serial: ${serialNumber}, Listed: $${price}). Please provide intake instructions.`;
+    }
+    this.updateTotalDisplay();
+  }
+
+  /**
+   * Updates the projected total and deposit amounts in the UI.
    */
   private updateTotalDisplay(): void {
-    const priceEl = document.getElementById('commission-price-display');
-    if (priceEl) {
-      const total = this.calculateTotal();
-      priceEl.textContent = `$${total.toLocaleString()}`;
-      priceEl.classList.remove('pulse-tag');
-      void priceEl.offsetWidth; // Trigger reflow for animation restart
-      priceEl.classList.add('pulse-tag');
+    const total = this.calculateTotal();
+    const deposit = this.calculateDeposit();
+
+    const priceDisplay = document.getElementById('commission-price-display');
+    const depositDisplay = document.getElementById('commission-deposit-display');
+
+    if (priceDisplay) {
+      priceDisplay.textContent = `$${total.toLocaleString()}`;
+    }
+    if (depositDisplay) {
+      depositDisplay.textContent = `$${deposit.toLocaleString()}`;
     }
   }
 
   /**
-   * Renders the interactive configuration form into #commission-form-container.
+   * Renders the complete comic commission form template.
    */
-  public renderForm(): void {
+  private renderForm(): void {
     const container = document.getElementById('commission-form-container');
     if (!container) return;
 
     container.innerHTML = `
-      <form id="custom-cue-form" class="comic-commission-form">
-        <!-- Step 1: Base Cue Style -->
+      <form id="custom-cue-form" class="commission-form">
+        <!-- Step 1: Base Aesthetic Style -->
         <fieldset class="form-panel">
-          <legend class="panel-legend">1. SELECT BASE WEAPON STYLE</legend>
+          <legend class="panel-legend">1. SELECT DESIGN DISCIPLINE</legend>
           <div class="style-cards-grid">
-            ${STYLES.map((style, idx) => `
+            ${STYLES.map((s, idx) => `
               <label class="style-choice-card ${idx === 0 ? 'selected' : ''}">
-                <input type="radio" name="cue-style" value="${style.id}" ${idx === 0 ? 'checked' : ''} />
-                <div class="card-inner">
-                  <div class="choice-title">${style.name}</div>
-                  <div class="choice-desc">${style.description}</div>
-                  <div class="choice-price">Base: $${style.basePrice}</div>
+                <input type="radio" name="cue-style" value="${s.id}" ${idx === 0 ? 'checked' : ''} />
+                <div class="style-choice-header">
+                  <span class="style-title">${s.name}</span>
+                  <span class="style-base-price">FROM $${s.basePrice}</span>
                 </div>
+                <p class="style-desc">${s.description}</p>
               </label>
             `).join('')}
           </div>
         </fieldset>
 
-        <!-- Step 2: Mechanics & Joint -->
+        <!-- Step 2: Joint & Shaft Selection -->
         <div class="form-two-col">
           <fieldset class="form-panel">
             <legend class="panel-legend">2. JOINT PIN HARDWARE</legend>
@@ -193,17 +221,59 @@ export class CommissionController {
           </fieldset>
         </div>
 
-        <!-- Step 4: Custom Notes & Details -->
-        <fieldset class="form-panel">
-          <legend class="panel-legend">6. CUSTOM STORY OR COMIC THEME NOTES</legend>
-          <textarea id="custom-notes" class="comic-textarea" rows="3" placeholder="Tell Travis your dream comic series (e.g. 'Punisher vs Daredevil', 'Spawn #1', 'Silver Surfer'), favorite inlay woods, or custom tip preferences..."></textarea>
-        </fieldset>
+        <!-- Step 4: Collector Contact & Story Details -->
+        <div class="form-two-col">
+          <fieldset class="form-panel">
+            <legend class="panel-legend">6. YOUR CONTACT DETAILS</legend>
+            <div class="input-grid">
+              <input type="text" id="client-name" class="comic-input" placeholder="Your Full Name / Player Handle *" required />
+              <input type="email" id="client-email" class="comic-input" placeholder="Your Email Address *" required />
+              <input type="tel" id="client-phone" class="comic-input" placeholder="Phone Number / Instagram Handle (Optional)" />
+            </div>
+          </fieldset>
+
+          <fieldset class="form-panel">
+            <legend class="panel-legend">7. CUSTOM STORY OR COMIC THEME NOTES</legend>
+            <textarea id="custom-notes" class="comic-textarea" rows="4" placeholder="Tell us your dream comic series (e.g. 'Punisher vs Daredevil', 'Spawn #1', 'Silver Surfer'), preferred inlay timbers, or tournament weight balance point..."></textarea>
+          </fieldset>
+        </div>
+
+        <!-- Craftsman Policies Banner -->
+        <div class="craft-policies-grid">
+          <div class="policy-pill">
+            <span class="policy-icon">🛡️</span>
+            <div>
+              <strong>50% Deposit Architecture</strong>
+              <p>50% non-refundable deposit locks your shop lathe slot and funds raw tonewood acquisition.</p>
+            </div>
+          </div>
+          <div class="policy-pill">
+            <span class="policy-icon">⏳</span>
+            <div>
+              <strong>8–10 Week Craft Window</strong>
+              <p>Wood stabilization and multi-stage ceramic UV degassing are never rushed.</p>
+            </div>
+          </div>
+          <div class="policy-pill">
+            <span class="policy-icon">📦</span>
+            <div>
+              <strong>Inspection & Dispatch</strong>
+              <p>Final balance due only upon high-definition spin & acoustic video hit approval.</p>
+            </div>
+          </div>
+        </div>
 
         <!-- Price Tally & Submission -->
         <div class="commission-footer-banner">
-          <div class="price-callout">
-            <span class="callout-label">PROJECTED CUSTOM ESTIMATE:</span>
-            <span id="commission-price-display" class="callout-value">$${this.calculateTotal()}</span>
+          <div class="price-callout-dual">
+            <div class="price-item">
+              <span class="callout-label">PROJECTED CUSTOM ESTIMATE:</span>
+              <span id="commission-price-display" class="callout-value">$${this.calculateTotal().toLocaleString()}</span>
+            </div>
+            <div class="price-item deposit-item">
+              <span class="callout-label">50% DEPOSIT TO LOCK BUILD:</span>
+              <span id="commission-deposit-display" class="callout-value-deposit">$${this.calculateDeposit().toLocaleString()}</span>
+            </div>
           </div>
 
           <button type="submit" class="comic-btn btn-primary submit-btn">
@@ -271,18 +341,21 @@ export class CommissionController {
     const form = container.querySelector<HTMLFormElement>('#custom-cue-form');
     form?.addEventListener('submit', (e) => {
       e.preventDefault();
+      const clientName = (container.querySelector('#client-name') as HTMLInputElement)?.value || 'Player';
+      const clientEmail = (container.querySelector('#client-email') as HTMLInputElement)?.value || '';
       const notes = (container.querySelector('#custom-notes') as HTMLTextAreaElement)?.value || '';
-      const notesSnippet = notes ? ` Note: "${notes.slice(0, 25)}..."` : '';
+      const notesSnippet = notes ? ` Note: "${notes.slice(0, 30)}..."` : '';
 
       const total = this.calculateTotal();
+      const deposit = this.calculateDeposit();
 
       modalManager.showToast(
-        'COMMISSION TRANSMITTED! 🎱⚡',
-        `Travis Kloss received your ${this.selectedWeight}oz build request${notesSnippet} (Est: $${total.toLocaleString()}). Check your email shortly for wood blank and comic selection confirmation!`,
+        'COMMISSION INTAKE TRANSMITTED! 🎱⚡',
+        `Thank you ${clientName}! Managing Partner Antonio Moses has received your ${this.selectedWeight}oz build request${notesSnippet} (Estimate: $${total.toLocaleString()} | 50% Deposit: $${deposit.toLocaleString()}). Antonio will contact you at ${clientEmail} within 24 hours with your formal specification blueprint and deposit invoice.`,
         'chime'
       );
 
-      // Reset notes
+      // Reset form fields
       const notesEl = container.querySelector('#custom-notes') as HTMLTextAreaElement;
       if (notesEl) notesEl.value = '';
     });

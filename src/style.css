@@ -57,59 +57,13 @@ body {
   overflow-x: hidden;
 }
 
-/* Workshop Operational Mode Demo Switcher */
+/* Workshop Operational Mode Demo Switcher (Top Explanation Bar) */
 .model-switch-bar {
   background: #0d0e14;
   border-bottom: 3px solid var(--magenta);
   padding: 8px 16px;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  transition: padding 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.2s ease, box-shadow 0.2s ease;
-}
-
-.model-switch-bar .title-compact {
-  display: none;
-}
-
-/* Compact Scrolled HUD Mode for Mid-Page Toggling */
-.model-switch-bar.is-scrolled {
-  padding: 4px 16px;
-  background: rgba(13, 14, 20, 0.95);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6), 0 2px 0 var(--magenta);
-}
-
-.model-switch-bar.is-scrolled .switch-desc {
-  display: none;
-}
-
-.model-switch-bar.is-scrolled .title-full {
-  display: none;
-}
-
-.model-switch-bar.is-scrolled .title-compact {
-  display: inline;
-  font-size: 0.95rem;
-}
-
-.model-switch-bar.is-scrolled .model-toggle-pill-group {
-  box-shadow: 2px 2px 0 var(--magenta);
-}
-
-.model-switch-bar.is-scrolled .mode-toggle-btn {
-  padding: 4px 12px;
-  flex-direction: row;
-  align-items: center;
-  gap: 6px;
-}
-
-.model-switch-bar.is-scrolled .mode-toggle-btn .mode-text {
-  font-size: 0.85rem;
-}
-
-.model-switch-bar.is-scrolled .mode-toggle-btn .mode-sub {
-  display: none;
+  position: relative;
+  z-index: 105;
 }
 
 .model-switch-inner {
@@ -222,7 +176,7 @@ body {
   font-weight: 700;
 }
 
-/* Top Comic Strip Issue Banner */
+/* Top Comic Strip Issue Banner (Sticky) */
 .comic-issue-banner {
   background: var(--ink);
   color: var(--yellow);
@@ -234,8 +188,78 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
-  z-index: 90;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(18, 19, 28, 0.4);
+  transition: background 0.2s ease, padding 0.2s ease;
+}
+
+/* Quick Workshop Mode Switcher inside Sticky Comic Issue Banner */
+.banner-mode-toggle {
+  display: none;
+  background: #1a1c26;
+  border: 2px solid var(--paper);
+  border-radius: 4px;
+  box-shadow: 2px 2px 0 var(--magenta);
+  overflow: hidden;
+  margin: 0 12px;
+}
+
+/* Revealed when scrolled mid-page */
+.comic-issue-banner.is-scrolled .banner-mode-toggle {
+  display: inline-flex;
+  align-items: center;
+  animation: popInBanner 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.banner-mode-btn {
+  background: transparent;
+  border: none;
+  color: #ccc;
+  padding: 4px 12px;
+  cursor: pointer;
+  font-family: var(--font-headline);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.15s ease;
+}
+
+.banner-mode-btn:hover {
+  background: rgba(255, 230, 0, 0.15);
+  color: #fff;
+}
+
+.banner-mode-btn.active {
+  background: var(--yellow);
+  color: var(--ink);
+  font-weight: 700;
+  box-shadow: inset 0 0 0 1px var(--ink);
+}
+
+.banner-mode-btn.active[data-mode="boutique"] {
+  background: var(--cyan);
+  color: var(--ink);
+}
+
+@keyframes popInBanner {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 1100px) {
+  .comic-issue-banner.is-scrolled #mode-issue-pill {
+    display: none;
+  }
 }
 
 .issue-left {
@@ -1807,25 +1831,24 @@ body {
     white-space: nowrap;
   }
 
+  /* Banner Mode Switcher Mobile */
+  .banner-mode-toggle {
+    margin: 0 4px;
+  }
+  .banner-mode-btn {
+    padding: 3px 7px;
+    font-size: 0.74rem;
+  }
+  .comic-issue-banner.is-scrolled .issue-text {
+    display: none;
+  }
+
   /* Workshop Mode Switcher Mobile */
   .model-switch-bar {
     padding: 6px 10px;
   }
   .model-switch-label .switch-desc {
     display: none;
-  }
-  .model-switch-bar.is-scrolled {
-    padding: 3px 6px;
-  }
-  .model-switch-bar.is-scrolled .model-switch-inner {
-    justify-content: space-between;
-    gap: 4px;
-  }
-  .model-switch-bar.is-scrolled .mode-toggle-btn {
-    padding: 3px 8px;
-  }
-  .model-switch-bar.is-scrolled .mode-toggle-btn .mode-text {
-    font-size: 0.75rem;
   }
 
   /* Comic Mobile Navbar */

@@ -78,36 +78,46 @@ class ShopModeManager {
   public initUI(): void {
     document.body.dataset.shopMode = this.mode;
 
+    // Top workshop switcher buttons
     const restomodBtn = document.getElementById('mode-btn-restomod');
     const boutiqueBtn = document.getElementById('mode-btn-boutique');
 
-    restomodBtn?.addEventListener('click', () => {
+    // Sticky comic issue banner buttons
+    const bannerRestomodBtn = document.getElementById('banner-btn-restomod');
+    const bannerBoutiqueBtn = document.getElementById('banner-btn-boutique');
+
+    const handleRestomodClick = (): void => {
       if (this.mode !== 'restomod') {
         this.setMode('restomod', true);
       }
-    });
+    };
 
-    boutiqueBtn?.addEventListener('click', () => {
+    const handleBoutiqueClick = (): void => {
       if (this.mode !== 'boutique') {
         this.setMode('boutique', true);
       }
-    });
+    };
+
+    restomodBtn?.addEventListener('click', handleRestomodClick);
+    bannerRestomodBtn?.addEventListener('click', handleRestomodClick);
+
+    boutiqueBtn?.addEventListener('click', handleBoutiqueClick);
+    bannerBoutiqueBtn?.addEventListener('click', handleBoutiqueClick);
 
     this.updateToggleButtonsUI();
     this.updateDeclarativeTextElements();
 
-    // Initialize sticky scroll watcher to collapse explanation and shrink switcher mid-page
+    // Initialize sticky scroll watcher to reveal buttons in comic-issue-banner mid-page
     this.initStickyScrollWatcher();
   }
 
   /**
-   * Watches page scroll position to collapse the switcher bar into an ultra-compact
-   * sticky HUD when scrolling down mid-page, removing explanatory text while keeping
-   * instantaneous 1-click toggling available at all times.
+   * Watches page scroll position to reveal the quick mode toggle buttons inside the
+   * sticky Comic Issue Banner once the user scrolls down mid-page past the top workshop explanation.
    */
   private initStickyScrollWatcher(): void {
-    const switchBar = document.querySelector<HTMLElement>('.model-switch-bar');
-    if (!switchBar) return;
+    const issueBanner = document.getElementById('comic-issue-banner') || document.querySelector<HTMLElement>('.comic-issue-banner');
+    if (!issueBanner) return;
 
     // Throttle via requestAnimationFrame for 60fps scrolling performance
     let isTicking = false;
@@ -115,12 +125,12 @@ class ShopModeManager {
     const onScroll = (): void => {
       if (!isTicking) {
         window.requestAnimationFrame(() => {
-          // Collapse into compact mode once scrolled past initial header zone (40px)
-          const shouldCompact = window.scrollY > 40;
-          if (shouldCompact) {
-            switchBar.classList.add('is-scrolled');
+          // Reveal buttons in sticky banner once scrolled past the top explanation bar (60px)
+          const shouldShowInBanner = window.scrollY > 60;
+          if (shouldShowInBanner) {
+            issueBanner.classList.add('is-scrolled');
           } else {
-            switchBar.classList.remove('is-scrolled');
+            issueBanner.classList.remove('is-scrolled');
           }
           isTicking = false;
         });
@@ -134,22 +144,36 @@ class ShopModeManager {
   }
 
   /**
-   * Synchronizes active state and ARIA attributes on switcher buttons.
+   * Synchronizes active state and ARIA attributes across all switcher buttons.
    */
   private updateToggleButtonsUI(): void {
-    const restomodBtn = document.getElementById('mode-btn-restomod');
-    const boutiqueBtn = document.getElementById('mode-btn-boutique');
+    const restomodBtns = [
+      document.getElementById('mode-btn-restomod'),
+      document.getElementById('banner-btn-restomod'),
+    ];
+    const boutiqueBtns = [
+      document.getElementById('mode-btn-boutique'),
+      document.getElementById('banner-btn-boutique'),
+    ];
 
     if (this.mode === 'restomod') {
-      restomodBtn?.classList.add('active');
-      restomodBtn?.setAttribute('aria-checked', 'true');
-      boutiqueBtn?.classList.remove('active');
-      boutiqueBtn?.setAttribute('aria-checked', 'false');
+      restomodBtns.forEach((btn) => {
+        btn?.classList.add('active');
+        btn?.setAttribute('aria-checked', 'true');
+      });
+      boutiqueBtns.forEach((btn) => {
+        btn?.classList.remove('active');
+        btn?.setAttribute('aria-checked', 'false');
+      });
     } else {
-      boutiqueBtn?.classList.add('active');
-      boutiqueBtn?.setAttribute('aria-checked', 'true');
-      restomodBtn?.classList.remove('active');
-      restomodBtn?.setAttribute('aria-checked', 'false');
+      boutiqueBtns.forEach((btn) => {
+        btn?.classList.add('active');
+        btn?.setAttribute('aria-checked', 'true');
+      });
+      restomodBtns.forEach((btn) => {
+        btn?.classList.remove('active');
+        btn?.setAttribute('aria-checked', 'false');
+      });
     }
   }
 

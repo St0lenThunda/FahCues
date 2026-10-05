@@ -20,15 +20,12 @@
     <link rel="icon" type="image/jpeg" href="./images/stock1.jpg" />
   </head>
   <body>
-    <!-- Workshop Operational Mode Demo Switcher -->
+    <!-- Workshop Operational Mode Demo Switcher (Top Explanation Bar) -->
     <aside class="model-switch-bar" aria-label="Workshop Operational Mode Demo">
       <div class="model-switch-inner">
         <div class="model-switch-label">
           <span class="switch-icon">🎛️</span>
-          <span class="switch-title">
-            <span class="title-full">WORKSHOP DEMO SWITCHER:</span>
-            <span class="title-compact">DEMO:</span>
-          </span>
+          <span class="switch-title">WORKSHOP DEMO SWITCHER:</span>
           <span class="switch-desc">Flip between current mail-in Restomod reality and Boutique 1-of-1 step-up</span>
         </div>
         <div class="model-toggle-pill-group" role="radiogroup" aria-label="Shop Mode">
@@ -46,8 +43,8 @@
       </div>
     </aside>
 
-    <!-- Top Comic Strip Issue Banner -->
-    <header class="comic-issue-banner">
+    <!-- Top Comic Strip Issue Banner (Sticky) -->
+    <header class="comic-issue-banner" id="comic-issue-banner">
       <div class="issue-left">
         <span class="issue-badge">VOL. 1 • NO. 1</span>
         <span class="issue-text">FAH-CUES COMICS <span class="issue-edition">• OCTOBER 2026 EDITION</span></span>
@@ -57,6 +54,17 @@
           🔧 RESTOMOD STUDIO: SEND-IN BENCH OPEN
         </span>
       </div>
+
+      <!-- Scrolled Mid-Page Mode Switcher Buttons inside the original banner -->
+      <div class="banner-mode-toggle" id="banner-mode-toggle" role="radiogroup" aria-label="Quick Workshop Mode Switcher">
+        <button id="banner-btn-restomod" class="banner-mode-btn active" data-mode="restomod" role="radio" aria-checked="true" title="Switch to Restomod Studio ($395+)">
+          <span class="btn-emoji">🔧</span> RESTOMOD
+        </button>
+        <button id="banner-btn-boutique" class="banner-mode-btn" data-mode="boutique" role="radio" aria-checked="false" title="Switch to Boutique Forge ($1,250+)">
+          <span class="btn-emoji">⚡</span> BOUTIQUE
+        </button>
+      </div>
+
       <div class="banner-controls">
         <button id="vip-trigger-banner" class="vip-header-btn" aria-label="Join VIP drop list">
           🔔 VIP DROP ALERTS

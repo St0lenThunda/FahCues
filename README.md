@@ -26,6 +26,10 @@ A dynamic, high-voltage comic-book styled web showcase and interactive cue custo
 
 ## ⚡ Core Features
 
+- **3-Tier Operational Demo Engine**: Live operational toggle in the header and sticky HUD:
+  - **🔥 Street Wraps ($120–$150)**: High-durability automotive vinyl car-wrap style cues and comic decals applied to solid donor blanks. Turnkey in-stock batch drops for pool sharks with zero waiting time.
+  - **🔧 Restomod Studio ($395–$525)**: Send-in re-skinning service for a player's trusted cue. 360° vintage comic decoupage and 12-coat UV clear finish in 10–14 days.
+  - **⚡ Boutique Forge ($1,250–$2,200+)**: 1-of-1 bespoke master builds turned from exotic tonewoods, radial brass joints, and permanent serial registry.
 - **Comic Book Pop-Art Aesthetic**: Halftone Ben-Day dot textures, action sound bursts (POW! CRACK!), angled comic panels, bold ink drop shadows, and vivid neon-pop palettes.
 - **The Cue Arsenal (Interactive Gallery)**: Filterable showcase highlighting Travis's signature custom creations:
   - *The Punisher War Journal* (Full vintage comic decoupaged cue)
@@ -34,10 +38,10 @@ A dynamic, high-voltage comic-book styled web showcase and interactive cue custo
   - *The Smokin' 8 Break Cue* (Custom resin-cast 8-ball series)
   - *Exotic Inlays & Fluted Grips* (Precision wood lathe artistry)
 - **Interactive Cue Inspector Modal**: High-res inspection with detailed specs (Joint pin, shaft taper, butt wood, balance point, wrap material).
-- **Interactive Custom Cue Commission Estimator**: Choose custom components (cue style, joint pin, shaft material, wrap type) with live price estimation and commission request form.
-- **Interactive Cue Anatomy Diagram**: Educational comic breakdown of pool cue physics and craftsmanship (Tip, ferrule, joint, forearm, wrap, butt sleeve, bumper).
+- **Interactive Custom Cue Commission & Batch Ordering**: Context-aware intake form that shifts between instant batch orders (with local pickup or shipping options), restomod re-skinning intake, and bespoke master commissions.
+- **Interactive Cue Anatomy Diagram**: Educational comic breakdown of pool cue physics and craftsmanship (Tip, ferrule, joint, forearm, wrap, butt sleeve, bumper) with macro photography sync.
 - **Comic Audio Effects Engine**: Synthesized Web Audio comic hits, chalk taps, and crack sounds with instant audio mute toggle.
-- **Meet The Maker Comic Strip**: The story and craftsmanship philosophy of Travis Kloss.
+- **Meet The Maker Comic Strip & Partnership Model**: The story, craftsmanship philosophy, and clear division of labor between Travis Kloss (bench craft) and Antonio Moses (operations/client concierge).
 
 ---
 

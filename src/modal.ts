@@ -259,17 +259,22 @@ export class ModalManager {
   }
 
   /**
-   * Displays an animated comic toast notification.
+   * Displays an animated comic toast notification and plays corresponding comic sound FX.
    * @param title - Toast title / header
    * @param message - Toast description
-   * @param soundType - Sound to play
+   * @param soundType - Sound to synthesize ('chime', 'pow', 'crack', 'swoosh', or 'none')
    */
-  public showToast(title: string, message: string, soundType: 'chime' | 'pow' | 'crack' = 'chime'): void {
+  public showToast(
+    title: string,
+    message: string,
+    soundType: 'chime' | 'pow' | 'crack' | 'swoosh' | 'none' = 'chime'
+  ): void {
     if (!this.toastContainerEl) return;
 
     if (soundType === 'chime') comicAudio.playChime();
     else if (soundType === 'pow') comicAudio.playPow();
-    else comicAudio.playCrack();
+    else if (soundType === 'crack') comicAudio.playCrack();
+    else if (soundType === 'swoosh') comicAudio.playSwoosh();
 
     const toast = document.createElement('div');
     toast.className = 'comic-toast';

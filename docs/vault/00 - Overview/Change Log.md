@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file following the Keep a Changelog format.
 
+## [0.3.0] - 2026-10-30
+
+### Added
+- **3-Tier Operational Engine**: Created dynamic `ShopModeManager` supporting `street` ($120–$150 turnkey batch drops), `restomod` ($395–$525 send-in re-skins), and `boutique` ($1,250+ 1-of-1 Vault Drops).
+- **Street Wraps Batch Order System**: Built turnkey batch ordering form (`getStreetFormHtml`) with local PA pickup vs. ground shipping options.
+- **Top Bar & Sticky HUD Switchers**: Responsive mode switcher buttons and mid-page sticky comic-issue banner controls.
+- **Pool Hall Partnership Playbook**: Formulated consignment, tournament demo night, and league sponsorship strategy in `docs/vault/05 - Sales & Outreach/pool-hall-partnership-playbook.md`.
+- **ASTP Global Brand Compliance**: Embedded signature `⚡ ASTP • Another Stolen Thunda Product` provenance badge into application footer, README, and project status docs.
+
+### Changed
+- Expanded `cuesData.ts` with `streetPrice` fields across all catalog items.
+- Updated `main.ts` gallery cards to display adaptive badges, pricing rows, and button calls-to-action per operational mode.
+- Synchronized partner profile copy to reflect Travis's car-wrap vinyl craftsmanship and Antonio's batch fulfillment stewardship.
+
 ## [0.2.0] - 2026-10-04
 
 ### Added

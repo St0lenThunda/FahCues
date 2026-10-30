@@ -34,6 +34,7 @@ export const CUES_DATA: CueItem[] = [
     dropEdition: 'VAULT DROP #001: 1-OF-1',
     dropStatus: 'available',
     depositAmount: 625,
+    streetPrice: 140,
     restomodPrice: 425,
     restomodDeposit: 212.50,
     restomodTag: 'SEND-IN RE-SKIN'
@@ -65,6 +66,7 @@ export const CUES_DATA: CueItem[] = [
     dropEdition: 'VAULT DROP #001: 1-OF-1',
     dropStatus: 'available',
     depositAmount: 725,
+    streetPrice: 150,
     restomodPrice: 495,
     restomodDeposit: 247.50,
     restomodTag: 'SABER RESTOMOD'
@@ -96,6 +98,7 @@ export const CUES_DATA: CueItem[] = [
     dropEdition: 'VAULT DROP #001: 1-OF-1',
     dropStatus: 'reserved',
     depositAmount: 800,
+    streetPrice: 145,
     restomodPrice: 450,
     restomodDeposit: 225.00,
     restomodTag: 'CLASSIC RE-SKIN'
@@ -127,6 +130,7 @@ export const CUES_DATA: CueItem[] = [
     dropEdition: 'VAULT DROP #001: 1-OF-1',
     dropStatus: 'available',
     depositAmount: 675,
+    streetPrice: 135,
     restomodPrice: 425,
     restomodDeposit: 212.50,
     restomodTag: 'GOTHAM RE-SKIN'
@@ -158,6 +162,7 @@ export const CUES_DATA: CueItem[] = [
     dropEdition: 'BREAK WEAPON RUN',
     dropStatus: 'available',
     depositAmount: 550,
+    streetPrice: 125,
     restomodPrice: 395,
     restomodDeposit: 197.50,
     restomodTag: 'BREAK RE-SKIN'
@@ -189,6 +194,7 @@ export const CUES_DATA: CueItem[] = [
     dropEdition: 'APEX TOUR RUN',
     dropStatus: 'available',
     depositAmount: 775,
+    streetPrice: 150,
     restomodPrice: 445,
     restomodDeposit: 222.50,
     restomodTag: 'TOUR RE-SKIN'

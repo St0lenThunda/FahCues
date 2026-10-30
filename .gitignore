@@ -21,4 +21,7 @@ dist-ssr
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
+# Local temporary dumps & workspaces
+.tmp/
+*.code-workspace
+*.bak_*

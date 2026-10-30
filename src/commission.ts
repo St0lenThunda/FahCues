@@ -18,9 +18,11 @@ import {
   WRAPS,
   RESTOMOD_SOURCES,
   RESTOMOD_COVERAGE,
-  RESTOMOD_FINISHES
+  RESTOMOD_FINISHES,
+  STREET_BATCH_OPTIONS
 } from './commissionData.ts';
 import {
+  getStreetFormHtml,
   getRestomodFormHtml,
   getBoutiqueFormHtml
 } from './commissionTemplates.ts';
@@ -39,6 +41,10 @@ export {
  * Manages the interactive state of the commission form and deposit calculator.
  */
 export class CommissionController {
+  // Street state
+  private selectedStreetBatch: string = STREET_BATCH_OPTIONS[0].id;
+  private selectedStreetDelivery: string = 'pickup';
+
   // Boutique state
   private selectedStyle: string = STYLES[0].id;
   private selectedPin: string = JOINT_PINS[0].id;
@@ -63,6 +69,12 @@ export class CommissionController {
    */
   public calculateTotal(): number {
     const mode = shopModeManager.getMode();
+    if (mode === 'street') {
+      const batchObj = STREET_BATCH_OPTIONS.find((b) => b.id === this.selectedStreetBatch) || STREET_BATCH_OPTIONS[0];
+      const deliveryFee = this.selectedStreetDelivery === 'shipping' ? 25 : 0;
+      return batchObj.price + deliveryFee;
+    }
+
     if (mode === 'restomod') {
       const sourceObj = RESTOMOD_SOURCES.find((s) => s.id === this.selectedRestomodSource) || RESTOMOD_SOURCES[0];
       const coverageObj = RESTOMOD_COVERAGE.find((c) => c.id === this.selectedRestomodCoverage) || RESTOMOD_COVERAGE[0];
@@ -78,9 +90,13 @@ export class CommissionController {
   }
 
   /**
-   * Calculates required 50% non-refundable deposit.
+   * Calculates required deposit or terms display.
    */
   public calculateDeposit(): number {
+    const mode = shopModeManager.getMode();
+    if (mode === 'street') {
+      return this.calculateTotal(); // 100% turnkey purchase
+    }
     return Math.round(this.calculateTotal() * 0.5);
   }
 
@@ -109,7 +125,9 @@ export class CommissionController {
     const notesEl = document.getElementById('custom-notes') as HTMLTextAreaElement;
     const mode = shopModeManager.getMode();
     if (notesEl) {
-      if (mode === 'restomod') {
+      if (mode === 'street') {
+        notesEl.value = `[STREET WRAP CLAIM] Interested in claiming ${cueTitle} (${serialNumber}). Please confirm available inventory and dispatch/pickup time.`;
+      } else if (mode === 'restomod') {
         notesEl.value = `[RESTOMOD INQUIRY] Interested in a custom re-skin transformation inspired by ${cueTitle} (${serialNumber}). Please provide mail-in shipping tube instructions.`;
       } else {
         notesEl.value = `[VAULT DROP INQUIRY] Interested in claiming ${cueTitle} (Serial: ${serialNumber}, Listed: $${price}). Please provide deposit invoice and dispatch schedule.`;
@@ -124,6 +142,7 @@ export class CommissionController {
   private updateTotalDisplay(): void {
     const total = this.calculateTotal();
     const deposit = this.calculateDeposit();
+    const mode = shopModeManager.getMode();
 
     const priceDisplay = document.getElementById('commission-price-display');
     const depositDisplay = document.getElementById('commission-deposit-display');
@@ -132,7 +151,11 @@ export class CommissionController {
       priceDisplay.textContent = `$${total.toLocaleString()}`;
     }
     if (depositDisplay) {
-      depositDisplay.textContent = `$${deposit.toLocaleString()}`;
+      if (mode === 'street') {
+        depositDisplay.textContent = 'Full payment on pickup or dispatch invoice';
+      } else {
+        depositDisplay.textContent = `$${deposit.toLocaleString()}`;
+      }
     }
   }
 
@@ -147,13 +170,56 @@ export class CommissionController {
     const total = this.calculateTotal();
     const deposit = this.calculateDeposit();
 
-    if (mode === 'restomod') {
+    if (mode === 'street') {
+      container.innerHTML = getStreetFormHtml(this.selectedStreetBatch);
+      this.attachStreetEventListeners(container);
+    } else if (mode === 'restomod') {
       container.innerHTML = getRestomodFormHtml(total, deposit);
       this.attachRestomodEventListeners(container);
     } else {
       container.innerHTML = getBoutiqueFormHtml(total, deposit);
       this.attachBoutiqueEventListeners(container);
     }
+  }
+
+  /**
+   * Binds change and submit listeners to the Street form.
+   */
+  private attachStreetEventListeners(container: HTMLElement): void {
+    const batchRadios = container.querySelectorAll<HTMLInputElement>('input[name="street-batch-choice"]');
+    const batchCards = container.querySelectorAll<HTMLLabelElement>('.style-choice-card');
+    batchRadios.forEach((radio) => {
+      radio.addEventListener('change', () => {
+        batchCards.forEach((c) => c.classList.remove('selected'));
+        radio.closest('.style-choice-card')?.classList.add('selected');
+        this.selectedStreetBatch = radio.value;
+        comicAudio.playCrack();
+        this.updateTotalDisplay();
+      });
+    });
+
+    const deliverySelect = container.querySelector<HTMLSelectElement>('#select-street-delivery');
+    deliverySelect?.addEventListener('change', (e) => {
+      this.selectedStreetDelivery = (e.target as HTMLSelectElement).value;
+      comicAudio.playSwoosh();
+      this.updateTotalDisplay();
+    });
+
+    const form = container.querySelector<HTMLFormElement>('#custom-cue-form');
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const clientName = (container.querySelector('#client-name') as HTMLInputElement)?.value || 'Player';
+      const clientEmail = (container.querySelector('#client-email') as HTMLInputElement)?.value || '';
+      const total = this.calculateTotal();
+      const batchObj = STREET_BATCH_OPTIONS.find((b) => b.id === this.selectedStreetBatch) || STREET_BATCH_OPTIONS[0];
+
+      modalManager.showToast(
+        'STREET CUE CLAIMED! 🎱🔥',
+        `Boom ${clientName}! You've staked your claim on "${batchObj.name}" ($${total.toLocaleString()}). Antonio Moses has registered your order and will contact you at ${clientEmail} within 2 hours to confirm local pickup or shipping address. Travis already has this in the shop queue!`,
+        'chime'
+      );
+      form.reset();
+    });
   }
 
   /**

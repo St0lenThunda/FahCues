@@ -82,25 +82,36 @@ class FahCuesApp {
     const mode = shopModeManager.getMode();
 
     gridEl.innerHTML = filtered.map((cue) => {
-      const badgeHtml = mode === 'restomod'
-        ? `<span class="serial-pill">${cue.serialNumber}</span> ${cue.restomodTag || 'SEND-IN RE-SKIN'}`
-        : `<span class="serial-pill">${cue.serialNumber}</span> ${cue.badgeText}`;
+      let badgeHtml = '';
+      let statusHtml = '';
+      let priceDisplayHtml = '';
+      let claimBtnText = 'CLAIM WEAPON 🎱';
 
-      const statusHtml = mode === 'restomod'
-        ? '🔧 MAIL-IN BENCH OPEN (10–14 DAYS)'
-        : (cue.dropStatus === 'available' ? '🟢 1-OF-1 AVAILABLE FOR DISPATCH' : '🔒 RESERVED IN VAULT');
-
-      const priceDisplayHtml = mode === 'restomod'
-        ? `
+      if (mode === 'street') {
+        badgeHtml = `<span class="serial-pill">${cue.serialNumber}</span> STREET WRAP RUN`;
+        statusHtml = '🔥 READY TO SHIP (INVENTORY IN-SHOP)';
+        priceDisplayHtml = `
+          <div class="card-price-val">$${(cue.streetPrice || 135).toLocaleString()} <span class="price-mode-tag">COMPLETE CUE</span></div>
+          <div class="card-deposit-val">Turnkey Finished • No Waiting • 100% In-Stock</div>
+        `;
+        claimBtnText = 'BUY CUE NOW 🎱';
+      } else if (mode === 'restomod') {
+        badgeHtml = `<span class="serial-pill">${cue.serialNumber}</span> ${cue.restomodTag || 'SEND-IN RE-SKIN'}`;
+        statusHtml = '🔧 MAIL-IN BENCH OPEN (10–14 DAYS)';
+        priceDisplayHtml = `
           <div class="card-price-val">$${(cue.restomodPrice || 425).toLocaleString()} <span class="price-mode-tag">RE-SKIN</span></div>
           <div class="card-deposit-val">50% Deposit: $${(cue.restomodDeposit || 212.5).toFixed(0)} • 10–14 Days</div>
-        `
-        : `
+        `;
+        claimBtnText = 'TRANSFORM WEAPON 🎱';
+      } else {
+        badgeHtml = `<span class="serial-pill">${cue.serialNumber}</span> ${cue.badgeText}`;
+        statusHtml = (cue.dropStatus === 'available' ? '🟢 1-OF-1 AVAILABLE FOR DISPATCH' : '🔒 RESERVED IN VAULT');
+        priceDisplayHtml = `
           <div class="card-price-val">$${cue.priceEstimate.toLocaleString()}</div>
           <div class="card-deposit-val">50% Deposit: $${cue.depositAmount.toLocaleString()}</div>
         `;
-
-      const claimBtnText = mode === 'restomod' ? 'TRANSFORM WEAPON 🎱' : 'CLAIM WEAPON 🎱';
+        claimBtnText = 'CLAIM WEAPON 🎱';
+      }
 
       return `
         <article class="cue-card" data-id="${cue.id}">
@@ -114,7 +125,7 @@ class FahCuesApp {
           </div>
 
           <div class="card-body">
-            <div class="card-status-pill ${mode === 'restomod' ? 'available' : cue.dropStatus}">
+            <div class="card-status-pill ${mode === 'street' ? 'available' : (mode === 'restomod' ? 'available' : cue.dropStatus)}">
               ${statusHtml}
             </div>
 
@@ -146,7 +157,7 @@ class FahCuesApp {
                 <button class="comic-btn btn-primary inspect-btn" data-cue-id="${cue.id}">
                   INSPECT SPECS 🔍
                 </button>
-                ${(mode === 'restomod' || cue.dropStatus === 'available') ? `
+                ${(mode === 'street' || mode === 'restomod' || cue.dropStatus === 'available') ? `
                   <button class="comic-btn btn-secondary claim-btn" data-cue-id="${cue.id}">
                     ${claimBtnText}
                   </button>
@@ -190,10 +201,14 @@ class FahCuesApp {
           formEl?.scrollIntoView({ behavior: 'smooth' });
           comicAudio.playCrack();
 
-          const toastTitle = currentMode === 'restomod' ? 'RE-SKIN STAGED 🔧' : 'WEAPON STAGED FOR CLAIM ⚡';
-          const toastMsg = currentMode === 'restomod'
-            ? `Selected ${cue.title} transformation style! Fill out your contact details below to secure your 10–14 day bench slot.`
-            : `Selected ${cue.title} (${cue.serialNumber}). Fill out your contact details below to secure your 50% deposit slot!`;
+          const toastTitle = currentMode === 'street'
+            ? 'STREET CUE STAGED 🔥'
+            : (currentMode === 'restomod' ? 'RE-SKIN STAGED 🔧' : 'WEAPON STAGED FOR CLAIM ⚡');
+          const toastMsg = currentMode === 'street'
+            ? `Selected ${cue.title} ($${cue.streetPrice || 135})! In-stock turnkey cue. Fill your info below to arrange instant pickup or delivery.`
+            : (currentMode === 'restomod'
+              ? `Selected ${cue.title} transformation style! Fill out your contact details below to secure your 10–14 day bench slot.`
+              : `Selected ${cue.title} (${cue.serialNumber}). Fill out your contact details below to secure your 50% deposit slot!`);
 
           modalManager.showToast(toastTitle, toastMsg, 'pow');
         }

@@ -63,6 +63,8 @@ export interface CueItem {
   dropStatus: 'available' | 'reserved' | 'commission-only';
   /** Required 50% non-refundable deposit to lock build slot */
   depositAmount: number;
+  /** Street Wrap price (Turnkey finished wrapped cue ready to ship) */
+  streetPrice?: number;
   /** Restomod Re-Skin estimate when customer provides base cue */
   restomodPrice?: number;
   /** Restomod 50% bench deposit */
@@ -73,10 +75,11 @@ export interface CueItem {
 
 /**
  * Operational model of the FahCues workshop for demoing to Travis Kloss:
- * - 'restomod': Current simpler reality — Bring Your Own Weapon (BYOW) re-skinning, resurfacing, 10–14 day turnaround, $395–$525 pricing.
- * - 'boutique': Step-up boutique production — Full 1-of-1 bespoke builds, tonewood curing, radial joints, 8–10 week turnaround, $1,250+ pricing.
+ * - 'street': Immediate Hobby & Hustle reality — Custom wrapped cues (car wrap vinyl / high-grade decals), made for fun & infrequent profit, turnkey drops at $120–$150 (cues sourced at ~$80), no wait/pre-order stress, grab-and-go drops.
+ * - 'restomod': Step-up Mail-In Studio — Bring Your Own Weapon (BYOW) re-skinning, resurfacing, 10–14 day turnaround, $395–$525 pricing.
+ * - 'boutique': Premium Artisan Forge — Full 1-of-1 bespoke builds, tonewood curing, radial joints, 8–10 week turnaround, $1,250+ pricing.
  */
-export type ShopMode = 'restomod' | 'boutique';
+export type ShopMode = 'street' | 'restomod' | 'boutique';
 
 /**
  * Options chosen in the Custom Cue Commission Estimator.

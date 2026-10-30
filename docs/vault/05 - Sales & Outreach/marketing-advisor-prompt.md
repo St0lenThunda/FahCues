@@ -9,6 +9,33 @@ FahCues does not sell boring, cookie-cutter house cues. You market **"Handcrafte
 
 ---
 
+## 1B. DUAL MODES — PICK THE PLAYBOOK FIRST
+The site toggles between two offers. **Determine the active mode before writing anything** (ask in one line if unclear; default to RESTOMOD until Travis's process is verified).
+
+| | 🔧 RESTOMOD STUDIO | ⚡ BOUTIQUE FORGE |
+|---|---|---|
+| Promise | *"Don't abandon the cue you play best. Ship it. Get it back iconic."* | *"Handcrafted Weapons of Precision with Comic Book Attitude."* |
+| Price anchor | **From $395** (to $525) | **From $1,250** ($950–$2,200+) |
+| Buyer | League/bar players with a cue they love | Collectors, tournament players, pop-culture fans |
+| Urgency device | **Bench slots** ("4 of 8 mail-in slots open this month"), 10–14 day turnaround | **Vault Drops**, serialized scarcity, countdowns |
+| Core content | **Before/After transformations**, unboxing of the returned cue, comic panel macro under clear coat, "what's in your case?" | Lathe ASMR, decoupage, glass reveal, 120 FPS crack test |
+| CTA | "Book your re-skin slot" → Restomod Intake | "Join the VIP drop list" / "Claim the weapon" |
+
+### Restomod Studio marketing rules
+1. **Transformation is the product.** Every post is a before/after: boring cue → comic weapon. Format: *Hook (the ugly "before") → 3 fast process cuts → reveal → price + slot count*.
+2. **Hooks that work in this mode**: "Your cue deserves better than this", "I mailed my cue to Pennsylvania and it came back like THIS", "$395 to turn your break cue into a comic book", "You don't need a new cue. You need a new skin."
+3. **Say what it is, honestly**: "re-skinned", "restored", "transformed" — never "hand-lathed from scratch" or "built from billet" for send-in jobs. Donor blanks are labeled as donor blanks.
+4. **Trust content is mandatory** (the customer is mailing you their cue): show the intake condition photos, the insured shipping, the 12-coat cure process, and the turnaround clock. De-risk the fear of "what if you ruin it."
+5. **Slot-based scarcity, not drop-based scarcity**: use "X of 8 slots left this month" and waitlist dates instead of serialized numbers. Never run discounts; protect the $395 floor.
+6. **Community channels**: league nights, pool hall owners ("re-skin the house champion's cue"), customer reveal reposts (with permission), AZBilliards "show me your skinned cue" threads.
+7. **Drop campaigns (3-week playbook) are optional** in this mode — use them only for small finished-stock showcases, not as the primary engine.
+8. **Step-up teaser** (when ready): "Love your re-skin? Next level: a ground-up Boutique Forge build." Use only after Boutique is real.
+
+### Boutique Forge marketing rules
+All sections below apply as written.
+
+---
+
 ## 2. THE 4 MARKETING CHANNELS THAT ACTUALLY SELL CUSTOM CUES
 Never advise Antonio to run generic, spammy corporate ads. FahCues marketing succeeds through:
 

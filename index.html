@@ -26,10 +26,15 @@
         <div class="model-switch-label">
           <span class="switch-icon">🎛️</span>
           <span class="switch-title">WORKSHOP DEMO SWITCHER:</span>
-          <span class="switch-desc">Flip between current mail-in Restomod reality and Boutique 1-of-1 step-up</span>
+          <span class="switch-desc">Compare the 3 operating tiers: Street Hustle vs. Restomod vs. Boutique Forge</span>
         </div>
         <div class="model-toggle-pill-group" role="radiogroup" aria-label="Shop Mode">
-          <button id="mode-btn-restomod" class="mode-toggle-btn active" data-mode="restomod" role="radio" aria-checked="true">
+          <button id="mode-btn-street" class="mode-toggle-btn active" data-mode="street" role="radio" aria-checked="true">
+            <span class="mode-emoji">🔥</span>
+            <span class="mode-text">STREET WRAPS</span>
+            <span class="mode-sub">Turnkey Drops • $120–$150 • In-Stock</span>
+          </button>
+          <button id="mode-btn-restomod" class="mode-toggle-btn" data-mode="restomod" role="radio" aria-checked="false">
             <span class="mode-emoji">🔧</span>
             <span class="mode-text">RESTOMOD STUDIO</span>
             <span class="mode-sub">Send-In Re-Skin • $395+ • 10–14 Days</span>
@@ -49,15 +54,19 @@
         <span class="issue-badge">VOL. 1 • NO. 1</span>
         <span class="issue-text">FAH-CUES COMICS <span class="issue-edition">• OCTOBER 2026 EDITION</span></span>
         <span class="vault-drop-pill" id="mode-issue-pill"
+          data-mode-text-street="🔥 STREET DROP: 5–10 CUES IN PRODUCTION ($120–$150)"
           data-mode-text-restomod="🔧 RESTOMOD STUDIO: SEND-IN BENCH OPEN"
           data-mode-text-boutique="⚡ VAULT DROP #001: ACTIVE">
-          🔧 RESTOMOD STUDIO: SEND-IN BENCH OPEN
+          🔥 STREET DROP: 5–10 CUES IN PRODUCTION ($120–$150)
         </span>
       </div>
 
       <!-- Scrolled Mid-Page Mode Switcher Buttons inside the original banner -->
       <div class="banner-mode-toggle" id="banner-mode-toggle" role="radiogroup" aria-label="Quick Workshop Mode Switcher">
-        <button id="banner-btn-restomod" class="banner-mode-btn active" data-mode="restomod" role="radio" aria-checked="true" title="Switch to Restomod Studio ($395+)">
+        <button id="banner-btn-street" class="banner-mode-btn active" data-mode="street" role="radio" aria-checked="true" title="Switch to Street Wraps ($120–$150)">
+          <span class="btn-emoji">🔥</span> STREET
+        </button>
+        <button id="banner-btn-restomod" class="banner-mode-btn" data-mode="restomod" role="radio" aria-checked="false" title="Switch to Restomod Studio ($395+)">
           <span class="btn-emoji">🔧</span> RESTOMOD
         </button>
         <button id="banner-btn-boutique" class="banner-mode-btn" data-mode="boutique" role="radio" aria-checked="false" title="Switch to Boutique Forge ($1,250+)">
@@ -99,9 +108,10 @@
       <div class="hero-cover-grid">
         <div class="hero-content-col">
           <div class="comic-burst-tag"
+            data-mode-text-street="POW! TURNKEY WRAPPED WEAPONS • $120–$150 LIMITED RUNS"
             data-mode-text-restomod="POW! BRING YOUR OWN WEAPON • CUSTOM RE-SKIN STUDIO"
             data-mode-text-boutique="POW! VINTAGE COMICS MEET EXOTIC HARDWOODS">
-            POW! BRING YOUR OWN WEAPON • CUSTOM RE-SKIN STUDIO
+            POW! TURNKEY WRAPPED WEAPONS • $120–$150 LIMITED RUNS
           </div>
           <h1 class="hero-main-title">FAH-CUES!</h1>
           <div class="brand-acronym-badge">
@@ -110,26 +120,30 @@
             <span class="acronym-letter">H</span>ANDCRAFTED
           </div>
           <h2 class="hero-tagline"
+            data-mode-text-street="&quot;HIGH-OCTANE WRAPS. ZERO WAITING. REAL TABLE ATTITUDE.&quot;"
             data-mode-text-restomod="&quot;YOUR TRUSTED HIT. ICONIC COMIC SOUL.&quot;"
             data-mode-text-boutique="&quot;WEAPONS OF PRECISION WITH COMIC BOOK ATTITUDE.&quot;">
-            "YOUR TRUSTED HIT. ICONIC COMIC SOUL."
+            "HIGH-OCTANE WRAPS. ZERO WAITING. REAL TABLE ATTITUDE."
           </h2>
           <p class="hero-description"
+            data-mode-text-street="Travis wraps tournament maple cues like a high-end sports car—featuring heavy-duty automotive vinyl wraps and comic decals built to take table beatings. Hand-inspected, hit-tested, and priced for players at $120–$150. Small batch inventory ready to rack."
             data-mode-text-restomod="Don't abandon the cue you play best with. Ship your favorite playing weapon to Central Pennsylvania—Travis strips the old clear coat, wraps it in 360° genuine vintage comic decoupage, and seals it under 12 coats of high-impact resin armor in 10–14 days."
             data-mode-text-boutique="Where authentic underground pop-art collides with master wood lathe precision. Each cue is an original, tour-ready masterpiece handcrafted by Travis Kloss—encasing vintage comic book pages and exotic tonewoods in bulletproof ceramic resin. Turnaround: 8–10 weeks.">
-            Don't abandon the cue you play best with. Ship your favorite playing weapon to Central Pennsylvania—Travis strips the old clear coat, wraps it in 360° genuine vintage comic decoupage, and seals it under 12 coats of high-impact resin armor in 10–14 days.
+            Travis wraps tournament maple cues like a high-end sports car—featuring heavy-duty automotive vinyl wraps and comic decals built to take table beatings. Hand-inspected, hit-tested, and priced for players at $120–$150. Small batch inventory ready to rack.
           </p>
 
           <div class="hero-actions">
-            <a href="#commission-section" class="comic-btn btn-primary" id="hero-primary-btn"
+            <a href="#arsenal-section" class="comic-btn btn-primary" id="hero-primary-btn"
+              data-mode-text-street="POW! GRAB A WRAPPED CUE ($120–$150) 🎱"
               data-mode-text-restomod="POW! RE-SKIN YOUR CUE ($395+) 🎱"
               data-mode-text-boutique="POW! EXPLORE THE ARSENAL ⚡">
-              <span class="btn-pow">POW!</span> RE-SKIN YOUR CUE ($395+) 🎱
+              <span class="btn-pow">POW!</span> GRAB A WRAPPED CUE ($120–$150) 🎱
             </a>
-            <a href="#arsenal-section" class="comic-btn btn-secondary"
+            <a href="#commission-section" class="comic-btn btn-secondary"
+              data-mode-text-street="REQUEST NEXT BATCH THEME ⚡"
               data-mode-text-restomod="BROWSE FINISHED STYLES ⚡"
               data-mode-text-boutique="COMMISSION A CUSTOM BUILD 🎱">
-              BROWSE FINISHED STYLES ⚡
+              REQUEST NEXT BATCH THEME ⚡
             </a>
           </div>
         </div>
@@ -162,39 +176,44 @@
     <section id="vault-drop-banner" class="vault-drop-section">
       <div class="vault-drop-card">
         <div class="drop-status-tag"
+          data-mode-text-street="🔥 CURRENT BATCH: 7 OF 10 WRAPPED CUES AVAILABLE ($120–$150)"
           data-mode-text-restomod="🔧 BENCH QUEUE: 4 OF 8 MAIL-IN SLOTS OPEN THIS MONTH"
           data-mode-text-boutique="⚡ OFFICIAL VAULT DROP #001: NOW LIVE">
-          🔧 BENCH QUEUE: 4 OF 8 MAIL-IN SLOTS OPEN THIS MONTH
+          🔥 CURRENT BATCH: 7 OF 10 WRAPPED CUES AVAILABLE ($120–$150)
         </div>
         <div class="drop-content-grid">
           <div class="drop-text-col">
             <h2 class="drop-heading"
+              data-mode-text-street="STREET-READY CAR WRAP CUES: BUILT FOR ACTION"
               data-mode-text-restomod="SEND-IN RE-SKINNING & BESPOKE TRANSFORMATIONS"
               data-mode-text-boutique="THE HEROIC & COSMIC 1-OF-1 ARSENAL">
-              SEND-IN RE-SKINNING & BESPOKE TRANSFORMATIONS
+              STREET-READY CAR WRAP CUES: BUILT FOR ACTION
             </h2>
             <p class="drop-description"
+              data-mode-text-street="Wrapped like a high-performance vehicle. Travis sources solid tournament cues, applies durable high-grade vehicle wrap vinyl and graphic decals, and sells finished pieces for $120–$150. When he gets garage time, he builds them. When they sell, they're gone."
               data-mode-text-restomod="Keep your favorite balance and joint hit. Send your cue to Central Pennsylvania: Travis hand-applies 360° vintage comic decoupage and 12 hand-buffed coats of high-impact UV clear coat in just 10–14 days. Or claim a turnkey custom cue ready for dispatch."
               data-mode-text-boutique="Handcrafted in Central Pennsylvania by master cue maker Travis Kloss. Every cue in this drop is a numbered, one-of-a-kind tournament weapon permanently registered in the FahCues Master Registry. When a 1-of-1 piece is claimed, it is locked forever.">
-              Keep your favorite balance and joint hit. Send your cue to Central Pennsylvania: Travis hand-applies 360° vintage comic decoupage and 12 hand-buffed coats of high-impact UV clear coat in just 10–14 days. Or claim a turnkey custom cue ready for dispatch.
+              Wrapped like a high-performance vehicle. Travis sources solid tournament cues, applies durable high-grade vehicle wrap vinyl and graphic decals, and sells finished pieces for $120–$150. When he gets garage time, he builds them. When they sell, they're gone.
             </p>
             <div class="drop-highlights">
-              <span class="highlight-chip">★ 100% Genuine Vintage Comic Decoupage</span>
-              <span class="highlight-chip">★ 12-Coat Automotive UV Clear Armor</span>
-              <span class="highlight-chip">★ 10–14 Day Rapid Workshop Turnaround</span>
+              <span class="highlight-chip">★ 100% Turnkey Cues ($120–$150)</span>
+              <span class="highlight-chip">★ Durable High-Tack Auto Vinyl Wrap</span>
+              <span class="highlight-chip">★ In Stock & Ready to Ship</span>
             </div>
           </div>
           <div class="drop-action-col">
             <div class="drop-stat-box">
               <div class="stat-number"
+                data-mode-text-street="7 OF 10"
                 data-mode-text-restomod="4 OF 8"
                 data-mode-text-boutique="5 OF 6">
-                4 OF 8
+                7 OF 10
               </div>
               <div class="stat-label"
+                data-mode-text-street="BATCH CUES READY IN SHOP"
                 data-mode-text-restomod="MAIL-IN BENCH SLOTS AVAILABLE"
                 data-mode-text-boutique="SERIALIZED WEAPONS AVAILABLE">
-                MAIL-IN BENCH SLOTS AVAILABLE
+                BATCH CUES READY IN SHOP
               </div>
             </div>
             <button id="vip-trigger-section" class="comic-btn btn-secondary vip-open-btn">
@@ -293,15 +312,17 @@
         <div class="partnership-inner">
           <div class="partner-card">
             <div class="partner-role"
+              data-mode-text-street="CUE WRAP ARTIST & BENCH CRAFTSMAN"
               data-mode-text-restomod="MASTER RESTOMOD ARTIST & FINISH DIRECTOR"
               data-mode-text-boutique="MASTER CRAFTSMAN & LATHE DIRECTOR">
-              MASTER RESTOMOD ARTIST & FINISH DIRECTOR
+              CUE WRAP ARTIST & BENCH CRAFTSMAN
             </div>
             <h3 class="partner-name">TRAVIS KLOSS</h3>
             <p class="partner-bio"
+              data-mode-text-street="Applies heavy-duty automotive vinyl car wraps and high-grade comic decals to tested tournament cues during off-work shop hours. Builds 5–10 cues per batch for fun and table-ready hustle."
               data-mode-text-restomod="Focuses 100% on precision finish stripping, authentic vintage comic decoupage lamination, and 12-coat UV clear coat mirror buffing. Fast 10–14 day bench turnaround."
               data-mode-text-boutique="Focuses 100% on wood stabilization, precision hand-lathe tapering, authentic vintage comic decoupage, and acoustic hit-testing on tournament cloth. Zero compromises on tournament straightness.">
-              Focuses 100% on precision finish stripping, authentic vintage comic decoupage lamination, and 12-coat UV clear coat mirror buffing. Fast 10–14 day bench turnaround.
+              Applies heavy-duty automotive vinyl car wraps and high-grade comic decals to tested tournament cues during off-work shop hours. Builds 5–10 cues per batch for fun and table-ready hustle.
             </p>
           </div>
 
@@ -309,15 +330,17 @@
 
           <div class="partner-card">
             <div class="partner-role"
+              data-mode-text-street="MANAGING PARTNER & DROP OPERATOR"
               data-mode-text-restomod="MANAGING PARTNER & CLIENT CONCIERGE"
               data-mode-text-boutique="MANAGING PARTNER & MASTER REGISTRAR">
-              MANAGING PARTNER & CLIENT CONCIERGE
+              MANAGING PARTNER & DROP OPERATOR
             </div>
             <h3 class="partner-name">ANTONIO MOSES</h3>
             <p class="partner-bio"
+              data-mode-text-street="Sources cue blanks at wholesale ($80), photographs drops, handles customer payments ($120–$150), and delivers orders locally or via insured mail so Travis has zero administrative drag."
               data-mode-text-restomod="Coordinates inbound client shipping, PVC protective tube guidelines, vintage comic curation, 50% bench deposits, and insured return dispatch."
               data-mode-text-boutique="Oversees collector intake, specification accuracy, digital registry provenance, and white-glove insured delivery. Ensures every weapon is delivered with an official Certificate of Authenticity.">
-              Coordinates inbound client shipping, PVC protective tube guidelines, vintage comic curation, 50% bench deposits, and insured return dispatch.
+              Sources cue blanks at wholesale ($80), photographs drops, handles customer payments ($120–$150), and delivers orders locally or via insured mail so Travis has zero administrative drag.
             </p>
           </div>
         </div>
@@ -325,9 +348,10 @@
         <div class="provenance-seal-bar">
           <span class="seal-icon">📜</span>
           <span class="seal-text"
+            data-mode-text-street="EVERY STREET CUE COMES 100% INSPECTED FOR ZERO-RUNOUT STRAIGHTNESS & TABLE HIT"
             data-mode-text-restomod="EVERY TRANSFORMATION RECEIVES AN OFFICIAL FAHCUES RESTOMOD PROVENANCE CARD"
             data-mode-text-boutique="EVERY CUE INCLUDES AN OFFICIAL SERIALIZED CERTIFICATE OF AUTHENTICITY (COA)">
-            EVERY TRANSFORMATION RECEIVES AN OFFICIAL FAHCUES RESTOMOD PROVENANCE CARD
+            EVERY STREET CUE COMES 100% INSPECTED FOR ZERO-RUNOUT STRAIGHTNESS & TABLE HIT
           </span>
           <span class="seal-serial-demo">SAMPLE ID: FC-2026-001</span>
         </div>
@@ -367,19 +391,22 @@
     <section id="commission-section" class="section-wrapper">
       <div class="comic-section-header">
         <div class="comic-caption-box"
+          data-mode-text-street="THE STREET WRAP INVENTORY: GRAB & GO"
           data-mode-text-restomod="THE RESTOMOD STUDIO: TRANSFORM YOUR WEAPON"
           data-mode-text-boutique="THE FORGE: BUILD YOUR CUSTOM WEAPON">
-          THE RESTOMOD STUDIO: TRANSFORM YOUR WEAPON
+          THE STREET WRAP INVENTORY: GRAB & GO
         </div>
         <h2 class="comic-heading-lg"
+          data-mode-text-street="STREET CUE INVENTORY & DIRECT ORDER"
           data-mode-text-restomod="RESTOMOD ESTIMATOR & MAIL-IN INTAKE"
           data-mode-text-boutique="COMMISSION YOUR BESPOKE CUE">
-          RESTOMOD ESTIMATOR & MAIL-IN INTAKE
+          STREET CUE INVENTORY & DIRECT ORDER
         </h2>
         <p class="comic-subheading"
+          data-mode-text-street="Claim an in-stock wrapped cue from Travis's current batch ($120–$150). Zero wait, zero stress. Pick up locally in Central PA or get fast shipping."
           data-mode-text-restomod="Choose your base cue option, coverage, and protective armor to calculate your live estimate and reserve a bench slot."
           data-mode-text-boutique="Choose your components, calculate your live estimate, and submit your request to Travis.">
-          Choose your base cue option, coverage, and protective armor to calculate your live estimate and reserve a bench slot.
+          Claim an in-stock wrapped cue from Travis's current batch ($120–$150). Zero wait, zero stress. Pick up locally in Central PA or get fast shipping.
         </p>
       </div>
 
@@ -421,6 +448,9 @@
 
       <div class="footer-bottom-bar">
         <span>© 2026 FahCues. Handcrafted by Travis Kloss • Operations & Registry Managed by Antonio Moses.</span>
+        <span class="astp-badge-pill" style="display: inline-flex; align-items: center; gap: 6px; background: #090d16; color: #06b6d4; border: 1px solid #06b6d4; border-radius: 9999px; padding: 2px 10px; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.05em;">
+          ⚡ ASTP • Another Stolen Thunda Product
+        </span>
         <span>Engineered with Pure Comic Energy & Vite + Vanilla TypeScript</span>
       </div>
     </footer>

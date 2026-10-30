@@ -1,7 +1,13 @@
 # Pinned Session Context: FahCues
 
+> Brand: ⚡ **ASTP - Another Stolen Thunda Product**
 **Project**: FahCues — Custom Billiard Cues by Travis Kloss
 **Status**: Genesis Complete • v0.1.0 Ready • Dev Server Live (`http://localhost:5173/`)
+
+---
+
+## 🚀 What's Next
+- [ ] **[P1] Global ASTP Brand Badge**: Ensure the `⚡ ASTP - Another Stolen Thunda Product` badge is displayed in the site footer and `README.md`.
 
 ---
 

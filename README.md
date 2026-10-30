@@ -1,5 +1,7 @@
 # FahCues — Custom Billiard Cues by Travis Kloss 🎱⚡
 
+![ASTP — Another Stolen Thunda Product](https://img.shields.io/badge/ASTP-Another%20Stolen%20Thunda%20Product-06b6d4?style=for-the-badge&labelColor=090d16)
+
 [![Deploy FahCues to GitHub Pages](https://github.com/St0lenThunda/FahCues/actions/workflows/deploy.yml/badge.svg)](https://github.com/St0lenThunda/FahCues/actions/workflows/deploy.yml)
 [![Live Website](https://img.shields.io/badge/Live%20Website-st0lenthunda.github.io%2FFahCues-ff0055?style=for-the-badge&logo=githubpages&logoColor=white)](https://st0lenthunda.github.io/FahCues/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)

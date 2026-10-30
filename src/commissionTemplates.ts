@@ -11,8 +11,104 @@ import {
   WRAPS,
   RESTOMOD_SOURCES,
   RESTOMOD_COVERAGE,
-  RESTOMOD_FINISHES
+  RESTOMOD_FINISHES,
+  STREET_BATCH_OPTIONS
 } from './commissionData.ts';
+
+/**
+ * Generates the HTML markup for the Street Wraps batch order form.
+ */
+export function getStreetFormHtml(selectedBatchId: string): string {
+  const selectedBatch = STREET_BATCH_OPTIONS.find((b) => b.id === selectedBatchId) || STREET_BATCH_OPTIONS[0];
+
+  return `
+    <form id="custom-cue-form" class="commission-form street-mode">
+      <!-- Step 1: Select In-Stock Batch Cue -->
+      <fieldset class="form-panel">
+        <legend class="panel-legend">1. SELECT READY-TO-SHIP WRAPPED CUE ($120–$150)</legend>
+        <div class="style-cards-grid">
+          ${STREET_BATCH_OPTIONS.map((b) => `
+            <label class="style-choice-card ${b.id === selectedBatch.id ? 'selected' : ''}">
+              <input type="radio" name="street-batch-choice" value="${b.id}" ${b.id === selectedBatch.id ? 'checked' : ''} />
+              <div class="style-choice-header">
+                <span class="style-title">${b.name}</span>
+                <span class="style-base-price">$${b.price}</span>
+              </div>
+              <p class="style-desc">${b.description}</p>
+              <div style="margin-top: 8px; font-family: var(--font-headline); font-size: 0.85rem; color: var(--magenta);">
+                STATUS: ${b.availability}
+              </div>
+            </label>
+          `).join('')}
+        </div>
+      </fieldset>
+
+      <!-- Step 2: Cue Specifications & Finish -->
+      <div class="form-two-col">
+        <fieldset class="form-panel">
+          <legend class="panel-legend">2. TURNKEY CUE SPECS</legend>
+          <div style="font-size: 0.88rem; line-height: 1.5; color: #eee; font-family: var(--font-body);">
+            <p><strong>Base Cue:</strong> Straight-grain Canadian Rock Maple tournament blank ($80 foundation tested for zero runout).</p>
+            <p><strong>Wrap Style:</strong> Automotive-grade cast vinyl with high-tack adhesive & scratch laminate (like high-end car wraps).</p>
+            <p><strong>Turnaround:</strong> <em>Zero wait time</em> — in stock, packed securely, ready to hand off or ship.</p>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-panel">
+          <legend class="panel-legend">3. FULFILLMENT & DELIVERY</legend>
+          <div class="comic-select-wrap">
+            <select id="select-street-delivery" class="comic-select">
+              <option value="pickup">Central PA Local Handoff / Pool Hall Drop (Free)</option>
+              <option value="shipping">Insured Heavy-Tube Ground Shipping (+$25)</option>
+            </select>
+          </div>
+          <p class="panel-helper-text">Antonio coordinates payment and handoff so Travis can stay focused in the shop.</p>
+        </fieldset>
+      </div>
+
+      <!-- Step 3: Contact & Notes -->
+      <fieldset class="form-panel">
+        <legend class="panel-legend">4. BUYER CONTACT & FAST CHECKOUT</legend>
+        <div class="form-three-col">
+          <div class="input-group">
+            <label for="client-name" class="comic-label">YOUR NAME / HANDLE *</label>
+            <input type="text" id="client-name" class="comic-input" placeholder="e.g. Sharky Malone" required />
+          </div>
+          <div class="input-group">
+            <label for="client-email" class="comic-label">EMAIL ADDRESS *</label>
+            <input type="email" id="client-email" class="comic-input" placeholder="sharky@poolhall.com" required />
+          </div>
+          <div class="input-group">
+            <label for="client-phone" class="comic-label">PHONE / SMS (FOR DISPATCH) *</label>
+            <input type="tel" id="client-phone" class="comic-input" placeholder="(717) 555-0199" required />
+          </div>
+        </div>
+
+        <div class="input-group" style="margin-top: 16px;">
+          <label for="custom-notes" class="comic-label">SPECIAL REQUEST OR NEXT BATCH THEME IDEA</label>
+          <textarea id="custom-notes" class="comic-textarea" rows="3" placeholder="Tell us if you need a specific weight (18–20 oz) or suggest a comic/pop-culture decal for Travis's next batch..."></textarea>
+        </div>
+      </fieldset>
+
+      <!-- Step 4: Submission Footer -->
+      <div class="form-submit-panel">
+        <div class="pricing-summary">
+          <div class="summary-line">
+            <span class="summary-label">TURNKEY FINISHED CUE:</span>
+            <span id="commission-price-display" class="summary-val">$${selectedBatch.price}</span>
+          </div>
+          <div class="summary-sub-line">
+            <span class="sub-label">Terms:</span>
+            <span id="commission-deposit-display" class="sub-val">Full payment on pickup or dispatch invoice</span>
+          </div>
+        </div>
+        <button type="submit" id="submit-commission-btn" class="comic-btn btn-primary submit-btn">
+          <span class="btn-pow">POW!</span> CLAIM THIS WRAPPED CUE 🎱
+        </button>
+      </div>
+    </form>
+  `;
+}
 
 /**
  * Generates the HTML markup for the Restomod (Send-In Re-Skin) intake form.

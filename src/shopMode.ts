@@ -15,14 +15,14 @@ type ModeSubscriber = (mode: ShopMode) => void;
 
 class ShopModeManager {
   /** Single Source of Truth for current operational model */
-  private mode: ShopMode = 'restomod';
+  private mode: ShopMode = 'street';
   /** Subscribers notified on mode transitions (e.g. commission engine, cue cards) */
   private subscribers: ModeSubscriber[] = [];
 
   constructor() {
-    // Check saved preference or default to 'restomod' for immediate craftsman reality demo
+    // Check saved preference or default to 'street' for the immediate reality demo
     const saved = localStorage.getItem('fahcues_shop_mode') as ShopMode | null;
-    if (saved === 'restomod' || saved === 'boutique') {
+    if (saved === 'street' || saved === 'restomod' || saved === 'boutique') {
       this.mode = saved;
     }
   }
@@ -44,7 +44,7 @@ class ShopModeManager {
 
   /**
    * Changes the active shop mode, updates DOM state, and notifies listeners.
-   * @param nextMode - The target ShopMode ('restomod' or 'boutique')
+   * @param nextMode - The target ShopMode ('street', 'restomod', or 'boutique')
    * @param playSound - Whether to trigger comic sound effect
    */
   public setMode(nextMode: ShopMode, playSound: boolean = true): void {
@@ -63,8 +63,10 @@ class ShopModeManager {
     if (playSound) {
       if (nextMode === 'boutique') {
         comicAudio.playCrack();
-      } else {
+      } else if (nextMode === 'restomod') {
         comicAudio.playSwoosh();
+      } else {
+        comicAudio.playPow();
       }
     }
 
@@ -79,12 +81,20 @@ class ShopModeManager {
     document.body.dataset.shopMode = this.mode;
 
     // Top workshop switcher buttons
+    const streetBtn = document.getElementById('mode-btn-street');
     const restomodBtn = document.getElementById('mode-btn-restomod');
     const boutiqueBtn = document.getElementById('mode-btn-boutique');
 
     // Sticky comic issue banner buttons
+    const bannerStreetBtn = document.getElementById('banner-btn-street');
     const bannerRestomodBtn = document.getElementById('banner-btn-restomod');
     const bannerBoutiqueBtn = document.getElementById('banner-btn-boutique');
+
+    const handleStreetClick = (): void => {
+      if (this.mode !== 'street') {
+        this.setMode('street', true);
+      }
+    };
 
     const handleRestomodClick = (): void => {
       if (this.mode !== 'restomod') {
@@ -97,6 +107,9 @@ class ShopModeManager {
         this.setMode('boutique', true);
       }
     };
+
+    streetBtn?.addEventListener('click', handleStreetClick);
+    bannerStreetBtn?.addEventListener('click', handleStreetClick);
 
     restomodBtn?.addEventListener('click', handleRestomodClick);
     bannerRestomodBtn?.addEventListener('click', handleRestomodClick);
@@ -147,6 +160,10 @@ class ShopModeManager {
    * Synchronizes active state and ARIA attributes across all switcher buttons.
    */
   private updateToggleButtonsUI(): void {
+    const streetBtns = [
+      document.getElementById('mode-btn-street'),
+      document.getElementById('banner-btn-street'),
+    ];
     const restomodBtns = [
       document.getElementById('mode-btn-restomod'),
       document.getElementById('banner-btn-restomod'),
@@ -156,37 +173,39 @@ class ShopModeManager {
       document.getElementById('banner-btn-boutique'),
     ];
 
-    if (this.mode === 'restomod') {
-      restomodBtns.forEach((btn) => {
-        btn?.classList.add('active');
-        btn?.setAttribute('aria-checked', 'true');
+    const allGroups = [
+      { mode: 'street', btns: streetBtns },
+      { mode: 'restomod', btns: restomodBtns },
+      { mode: 'boutique', btns: boutiqueBtns },
+    ];
+
+    allGroups.forEach((group) => {
+      const isActive = this.mode === group.mode;
+      group.btns.forEach((btn) => {
+        if (isActive) {
+          btn?.classList.add('active');
+          btn?.setAttribute('aria-checked', 'true');
+        } else {
+          btn?.classList.remove('active');
+          btn?.setAttribute('aria-checked', 'false');
+        }
       });
-      boutiqueBtns.forEach((btn) => {
-        btn?.classList.remove('active');
-        btn?.setAttribute('aria-checked', 'false');
-      });
-    } else {
-      boutiqueBtns.forEach((btn) => {
-        btn?.classList.add('active');
-        btn?.setAttribute('aria-checked', 'true');
-      });
-      restomodBtns.forEach((btn) => {
-        btn?.classList.remove('active');
-        btn?.setAttribute('aria-checked', 'false');
-      });
-    }
+    });
   }
 
   /**
-   * Replaces inner text of DOM elements bearing data-mode-text-restomod and data-mode-text-boutique.
+   * Replaces inner text of DOM elements bearing data-mode-text-street, data-mode-text-restomod, and data-mode-text-boutique.
    */
   private updateDeclarativeTextElements(): void {
-    const textEls = document.querySelectorAll<HTMLElement>('[data-mode-text-restomod]');
+    const textEls = document.querySelectorAll<HTMLElement>('[data-mode-text-street], [data-mode-text-restomod], [data-mode-text-boutique]');
     textEls.forEach((el) => {
+      const streetText = el.getAttribute('data-mode-text-street');
       const restomodText = el.getAttribute('data-mode-text-restomod');
       const boutiqueText = el.getAttribute('data-mode-text-boutique');
 
-      if (this.mode === 'restomod' && restomodText) {
+      if (this.mode === 'street' && streetText) {
+        el.textContent = streetText;
+      } else if (this.mode === 'restomod' && restomodText) {
         el.textContent = restomodText;
       } else if (this.mode === 'boutique' && boutiqueText) {
         el.textContent = boutiqueText;

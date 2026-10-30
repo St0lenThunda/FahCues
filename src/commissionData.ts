@@ -24,6 +24,45 @@ export interface RestomodOption {
   priceDelta: number;
 }
 
+export interface StreetBatchOption {
+  id: string;
+  name: string;
+  theme: string;
+  price: number;
+  description: string;
+  availability: string;
+}
+
+/**
+ * Street Wraps Batch Options (Turnkey finished wrapped cues)
+ */
+export const STREET_BATCH_OPTIONS: StreetBatchOption[] = [
+  {
+    id: 'street-classic-marvel',
+    name: 'Marvel Heroes High-Gloss Auto Wrap',
+    theme: 'Punisher & Spider-Man Decals',
+    price: 135,
+    description: '100% turnkey brand-new Canadian maple cue wrapped in automotive-grade vinyl with sealed comic graphics.',
+    availability: '3 In Stock'
+  },
+  {
+    id: 'street-dark-knight',
+    name: 'Gotham Shadows Matte Tactical Wrap',
+    theme: 'Batman & Joker Car Wrap Style',
+    price: 140,
+    description: 'Stealth automotive wrap finish with textured grip feel and scratch-resistant over-laminate.',
+    availability: '2 In Stock'
+  },
+  {
+    id: 'street-break-weapon',
+    name: 'Heavy Artillery Break & Jump Wrap',
+    theme: 'Smokin 8-Ball & Comic Kinetic Impact',
+    price: 125,
+    description: 'High kinetic energy transfer break cue with high-tack wrap protection against chalk and table dings.',
+    availability: '2 In Stock'
+  }
+];
+
 /**
  * Boutique Bespoke Styles (Built from scratch with tonewoods)
  */
